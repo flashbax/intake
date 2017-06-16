@@ -20,6 +20,7 @@
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/skeleton.css">
 
   <!-- Favicon
@@ -31,9 +32,13 @@
 
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+
+
   <div class="container">
     <div class="row">
-      <div class="one-half column" style="margin-top: 25%">
+      <div class="twelve columns" style="margin-top: 10%">
+      <h1>Singer Kwinter PNC Form</h1>
         <form action="" method="post" enctype="multipart/form-data">
          <fieldset>
             <label for="name">First Name:</label>
@@ -42,10 +47,10 @@
             <label for="email">Last Name:</label>
             <input type="text" id="lastname" name="lastname" placeholder="Enter last name" />
             <br />
-            <label for="email">Phone</label>
+            <label for="email">Phone:</label>
             <input type="text" id="phone" name="phone" placeholder="Enter phone number" />
             <br />
-            <label for="refferal">Referral Source</label>
+            <label for="refferal">Referral Source:</label>
               <select name="referral" id="referral" placeholder="Enter referral">
                 <option value="advertising">Advertising (General)</option>
                 <option value="advocatesjournal">Advocates Journal</option>
@@ -148,7 +153,7 @@
                 <option value="yellowpages">Yellow Pages</option>
               </select>
             <br />
-             <label for="lawyer">Lawyer</label>
+             <label for="lawyer">Lawyer:</label>
               <select name="lawyer" id="lawyer" placeholder="Enter Lawyer">
                 <option value="amk">Alfred M. Kwinter</option>
                 <option value="wam">William A McMaster</option>
@@ -159,6 +164,37 @@
                 <option value="ntd">Nga T. Dang</option>
                 <option value="szk">Shane Z. Kwinter</option>
               </select>
+            <br />
+             <label for="type">Type of File:</label>
+              <select name="type" id="type" placeholder="Enter Type of File">
+                <option value="assult">Assault</option>
+                <option value="bicycleaccident">Bicycle Accident</option>
+                <option value="civillitigation">Civil Litigation</option>
+                <option value="dogbite">Dog Bite</option>
+                <option value="fireloss">Fire Loss Claim</option>
+                <option value="insurance">Insurance</option>
+                <option value="ltdclaim">LTD Claim</option>
+                <option value="matrimonial">Matrimonial</option>
+                <option value="medicalmalpractice">Medical Malpractice</option>
+                <option value="motorcycleaccident">Motorcycle Accident</option>
+                <option value="motorvehicleaccident">Motor Vehicle Accident</option>
+                <option value="negligence">Negligence</option>
+                <option value="occupiersliability">Occupiers Liability</option>
+                <option value="productliability">Product Liability</option>
+                <option value="propertydamage">Property Damage</option>
+                <option value="prospect">Prospect</option>
+                <option value="slipfallaccident">Slip & Fall Accident</option>
+                <option value="theft">Theft</option>
+                <option value="wrongfuldismissal">Wrongful Dismissal</option>
+                <option value="wsibclaim">WSIB Claim</option>
+                <option value="other">Other</option>
+              </select>
+            <br />
+            <label for="contact">Date of Contact:</label>
+            <input type="date" id="contact" name="contact" placeholder="Enter the date" />
+            <br />
+            <label for="formfilledby">Form Filled By:</label>
+            <input type="text" id="formfilledby" name="formfilledby" placeholder="Enter your name" />
             <br />
             <label for="comments">Comments:</label>
             <textarea id="comments" name="description" placeholder="Enter comments about the PNC"></textarea>
