@@ -5,7 +5,7 @@
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>Your page title here :)</title>
+  <title>Intake Form</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -15,7 +15,7 @@
 
   <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+   <!--  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css"> -->
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -34,8 +34,138 @@
   <div class="container">
     <div class="row">
       <div class="one-half column" style="margin-top: 25%">
-        <h4>Basic Page</h4>
-        <p>This index.html page is a placeholder with the CSS, font and favicon. It's just waiting for you to add some content! If you need some help hit up the <a href="http://www.getskeleton.com">Skeleton documentation</a>.</p>
+        <form action="" method="post" enctype="multipart/form-data">
+         <fieldset>
+            <label for="name">First Name:</label>
+            <input type="text" id="firstname" name="firstname" placeholder="Enter first name" />
+            <br />
+            <label for="email">Last Name:</label>
+            <input type="text" id="lastname" name="lastname" placeholder="Enter last name" />
+            <br />
+            <label for="email">Phone</label>
+            <input type="text" id="phone" name="phone" placeholder="Enter phone number" />
+            <br />
+            <label for="refferal">Referral Source</label>
+              <select name="referral" id="referral" placeholder="Enter referral">
+                <option value="advertising">Advertising (General)</option>
+                <option value="advocatesjournal">Advocates Journal</option>
+                <option value="ajaxpickering">Ajax Pickering</option>
+                <option value="amksfriend">AMK's Friend</option>
+                <option value="anotherlawyer">Another Lawyer</option>
+                <option value="anotherclient">Another Client</option>
+                <option value="answeringad">Answered Ad </option>
+                <option value="barassociation">Bar Association</option>
+                <option value="brsphone">Bar Referral Service - Phone </option>
+                <option value="brsweb">Bar Referral Service - Web</option>
+                <option value="bestlawyers">Best Lawyers</option>
+                <option value="bikingtoronto">Biking Toronto</option>
+                <option value="bookkeeper">Book Keeper</option>
+                <option value="bist">Brain Injury Society of Toronto</option>
+                <option value="bramptonbillboard">Brampton Billboard</option>
+                <option value="bramptonguardianad">Brampton Guardian Ad</option>
+                <option value="bramptontransitshelter">Brampton Transit Shelter</option>
+                <option value="can411">Canada 411</option>
+                <option value="canlawlist">Canada Law List - Legal Directory</option>
+                <option value="canlawmagazine">Canadian Law Magazine</option>
+                <option value="canlaw">Canadian Lawyer</option>
+                <option value="canparaassociation">Canadian Parapalegic Association</option> 
+                <option value="citynewstvad">City News Television Ad</option>
+                <option value="coldcall">Cold Call</option>
+                <option value="coworker">Co-worker</option>
+                <option value="cp24tvad">CP24 - Television Ad</option>
+                <option value="ctvtvad">CTV - Television Ad</option>
+                <option value="existingclient">Existing Client</option>
+                <option value="firmwebsite">Firm Website</option>
+                <option value="dennisschewchuck">Dennis Schewchuck, LLB</option>
+                <option value="directmail">Direct Mail</option>
+                <option value="douglissaman">Doug Lissaman</option>
+                <option value="alangordon">Dr. Alan Gordon</option> 
+                <option value="employee">Employee</option>
+                <option value="familymember">Family Member</option>
+                <option value="flyer">Flyer</option>
+                <option value="frankmedicino">Frank Medicino LLB</option>
+                <option value="friend">Friend</option>
+                <option value="healthcaremedicalprof">Healthcare/Medical Prof.</option>
+                <option value="hospitalnews">Hospital News</option>
+                <option value="interthegoldbook">Internet - The Goldbook</option>
+                <option value="interwebsite">Internet - Website</option>
+                <option value="intergooglesearch">Internet - Google Search</option> 
+                <option value="irvsnitman">Irv Snitman LLB</option>
+                <option value="kozlowski">Kozlowski</option>
+                <option value="krystynawilk">Krystyna Wilk</option>
+                <option value="lawsociety">Law Society</option>
+                <option value="lawyercom">Lawyer.com</option>
+                <option value="lawyerlocate">Lawyer Locate</option>
+                <option value="lawyersweekly">Lawyers Weekly</option>
+                <option value="legalaid">Legal Aid</option>
+                <option value="lexpertmagazine">Lexpert Magazine</option>
+                <option value="londonnews">London News</option>
+                <option value="marklinnet">Mark Linett LLB</option>
+                <option value="markalter">Mark Alter LLB</option>
+                <option value="maxberger">Max Berger LLB</option>
+                <option value="mississauganews">Mississauga News</option>
+                <option value="motorcyclemojomagazine">Motorcycle Mojo Magazine</option>
+                <option value="mountsinai">Mount Sinai/Wasser Pain Clinic</option>
+                <option value="nationalfireadjusters">National Fire Adjusters</option>
+                <option value="nationalpost">National Post</option>
+                <option value="newspaper">Newspaper</option>
+                <option value="oakvillebeaverad">Oakville Beaver Ad</option>
+                <option value="omni1tvad">OMNI 1 - Television Ad</option>
+                <option value="omni2tvad">OMNI 2 - Television Ad</option>
+                <option value="obia">Ontario Brain Injury Association</option>
+                <option value="ontarioombudsman">Ontario Ombudsman</option>
+                <option value="ontarioreportslegaldirectory">Ontario Reports Legal Directory</option> 
+                <option value="orillanews">Orilla News</option>
+                <option value="oshawabillboard">Oshawa Billboard</option>
+                <option value="oshawanewspaperad">Oshawa Newspaper Ad</option>
+                <option value="oshawatransitshelter">Oshawa Transit Shelter</option>
+                <option value="other">Other</option> 
+                <option value="outsidelawfirm">Outside Law Firm</option>
+                <option value="peterboroughyellowpages">Peterborough Yellow Pages</option> 
+                <option value="philpatterson">Phil Patterson LLB</option> 
+                <option value="phonedirectory">Phone Directory</option>
+                <option value="polishdirectory">Polish Directory</option>
+                <option value="prevclient">Previous Client</option>
+                <option value="radioshow">Radio Show</option>
+                <option value="radiostation">Radio Station</option>
+                <option value="scio">Spinal Cord Injury Ontario</option>
+                <option value="telelatinotvad">Telelatino Televison Ad</option> 
+                <option value="tv">Television</option>
+                <option value="thegoldbook">The Goldbook</option>
+                <option value="thelitigator">The Litigator</option>
+                <option value="tomdavid">Tom David LLB</option>
+                <option value="tabin">Toronto Aquired Brain Injury Network</option> 
+                <option value="torbillboard">Toronto Billboard</option>
+                <option value="torstar">Toronto Star Newspaper</option> 
+                <option value="torsun">Toronto Sun Newspaper</option>
+                <option value="torrehab">Toronto Rehab</option>
+                <option value="tvcommercial">TV - Commercial</option>
+                <option value="tvnewsappearance">TV - News Appearance</option>
+                <option value="unknown">Unknown</option>
+                <option value="vietnamesenewspaper">Vietnamese Newspaper</option>
+                <option value="wordofmouth">Word of Mouth</option>
+                <option value="whitbynewspaper">Whitby Newspaper</option>
+                <option value="yellowpages">Yellow Pages</option>
+              </select>
+            <br />
+             <label for="lawyer">Lawyer</label>
+              <select name="lawyer" id="lawyer" placeholder="Enter Lawyer">
+                <option value="amk">Alfred M. Kwinter</option>
+                <option value="wam">William A McMaster</option>
+                <option value="jfk">Jason F. Katz</option>
+                <option value="jds">Jason D. Singer</option>
+                <option value="shk">Shane H. Katz</option>
+                <option value="vsm">Veronica S. Marson</option>
+                <option value="ntd">Nga T. Dang</option>
+                <option value="szk">Shane Z. Kwinter</option>
+              </select>
+            <br />
+            <label for="comments">Comments:</label>
+            <textarea id="comments" name="description" placeholder="Enter comments about the PNC"></textarea>
+            <br />
+            <input type="submit" value="Save PNC" />
+         </fieldset>
+      </form>
       </div>
     </div>
   </div>
