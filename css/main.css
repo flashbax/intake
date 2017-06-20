@@ -1,7 +1,16 @@
-body { 
-	background-color: #fff;
-}
 
-.container { 
-	border: 1px solid black
+.outer-container { 
+	border: 1px solid #bbb;
+	background-image: url("../images/bg.jpg");
+	background-repeat: repeat;
  }
+
+ .container {
+ 	margin-top: 20px !important;
+ 	}
+
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+	background-color: #fff !important;
+}
