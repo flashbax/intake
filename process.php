@@ -13,6 +13,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {//Check it is coming from a form
     
     //print output text
     print "Hello " . $u_firstname . "!, we have received your message and phone number ". $u_phone;
+    
+    print $u_firstname;
+    print $u_lastname;
+    print $u_phone;
+    print $u_referral;
+    print $u_lawyer;
+    print $u_type;
+    print $u_dateofcontact;
+    print $u_formfilledby;
+    print $u_comments;
+    
+
     print "We will contact you very soon!";
 }
 ?>
