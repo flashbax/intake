@@ -12,17 +12,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {//Check it is coming from a form
     $u_comments = $_POST["comments"];
     
     //print output text
-    print "Hello " . $u_firstname . "!, we have received your message and phone number ". $u_phone;
+    print "Thank you " . $u_firstname . ". Your submission has been added to the database.<br /><br />";
     
-    print $u_firstname;
-    print $u_lastname;
-    print $u_phone;
-    print $u_referral;
-    print $u_lawyer;
-    print $u_type;
-    print $u_dateofcontact;
-    print $u_formfilledby;
-    print $u_comments;
+    print "First Name: " . $u_firstname . " <br />";
+    print "Last Name: " . $u_lastname . " <br />";
+    print "Phone Number: " . $u_phone . " <br />";
+    print "Referral Source: " . $u_referral . " <br />";
+    print "Lawyer: " . $u_lawyer . " <br />";
+    print "Type of File: " . $u_type . " <br />";
+    print "Date of Contact: " . $u_dateofcontact . " <br />";
+    print "Form Filled By:  " . $u_formfilledby . " <br />";
+    print "Comments: " . $u_comments . " <br /><br />";
     
 
     print "We will contact you very soon!";
