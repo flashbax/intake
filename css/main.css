@@ -1,13 +1,13 @@
 
-.outer-container { 
-	border: 1px solid #bbb;
+html {
+    height: 100% !important;
 	background-image: url("../images/bg.jpg");
 	background-repeat: repeat;
- }
+}
 
- .container {
- 	margin-top: 20px !important;
- 	}
+#container-padding { 
+ 	padding: 10px;
+}
 
 input[type="submit"],
 input[type="reset"],

@@ -15,7 +15,7 @@
 
   <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Khula" rel="stylesheet">
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -31,17 +31,19 @@
 <body>
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div class="outer-container">
+  
   <div class="container">
     <div class="row">
       <div class="twelve columns">
-        <div class="row">
-          <div class="six columns"><img src="images/logo.png" /></div>
-          <div class="six columns"><h4>Potential New Client Form</h4></div>
+        <div class="row" id="container-padding">
+          <div class="twelve columns"><img src="images/logo.png" /></div>
+        </div>  
+        <div class="row" id="container-padding">
+          <div class="twelve columns"><h4>Potential New Client Form</h4></div>
         </div>
         <form action="process.php" method="post" enctype="multipart/form-data">
          <fieldset>
-            <div class="row">
+            <div class="row" id="container-padding">
               <div class="four columns">
                 <label for="name">First Name:</label>
                 <input type="text" id="firstname" name="firstname" placeholder="Enter first name" />
@@ -55,7 +57,7 @@
                 <input type="text" id="phone" name="phone" placeholder="Enter phone number" />
               </div>
             </div>
-            <div class="row">
+            <div class="row" id="container-padding">
               <div class="four columns">
                 <label for="refferal">Referral Source:</label>
                   <select name="referral" id="referral" placeholder="Enter referral">
@@ -201,7 +203,7 @@
                 </select>
               </div>
             </div>
-            <div class="row">
+            <div class="row" id="container-padding">
               <div class="four columns">
                 <label for="dateofcontact">Date of Contact:</label>
                 <input type="date" id="dateofcontact" name="dateofcontact" placeholder="Enter the date" />
@@ -215,23 +217,19 @@
                 <textarea id="comments" name="comments" placeholder="Enter comments about the PNC"></textarea>
               </div>
             </div>
-            <div class="row" class="twelve columns">
-              <div class="four columns">
+            <div class="row twelve columns" id="container-padding">
+              
                 <input type="submit" value="Save PNC" />
-                <br />
                 <input type="reset" value="Reset">
-                <br />
                 <input type="button" value="Edit">
-                <br />
                 <input type="button" value="Admin">
-              </div>
+              
             </div>
               
          </fieldset>
       </form>
       </div>
     </div>
-  </div>
   </div>
 
 <!-- End Document

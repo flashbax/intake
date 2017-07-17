@@ -124,7 +124,7 @@ body {
   font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
   line-height: 1.6;
   font-weight: 400;
-  font-family:'Josefin Sans', sans-serif;
+  font-family: 'Khula', sans-serif;
   color: #44515c; }
 
 
@@ -240,7 +240,8 @@ select {
   border: 1px solid #D1D1D1;
   border-radius: 4px;
   box-shadow: none;
-  box-sizing: border-box; }
+  box-sizing: border-box; 
+  width: 160px;}
 /* Removes awkward default styles on some inputs for iOS */
 input[type="email"],
 input[type="number"],
@@ -403,7 +404,11 @@ there.
 
 
 /* Larger than mobile */
-@media (min-width: 400px) {}
+@media (max-width: 400px) {
+  html {
+    font-size: 42.5%; 
+  }
+}
 
 /* Larger than phablet (also point when grid becomes active) */
 @media (min-width: 550px) {}
@@ -415,4 +420,9 @@ there.
 @media (min-width: 1000px) {}
 
 /* Larger than Desktop HD */
-@media (min-width: 1200px) {}
+@media (max-width: 1150px) {
+  .container{ 
+    border: none;
+    background-color: transparent;
+   }
+}
