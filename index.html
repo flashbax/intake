@@ -221,13 +221,21 @@
               
                 <input type="submit" value="Save PNC" />
                 <input type="reset" value="Reset">
-                <input type="button" value="Edit">
                 <input type="button" value="Admin">
               
             </div>
               
          </fieldset>
       </form>
+      <form action="edit.php" method="get">
+          <fieldset>
+              <div class="row" id="container-padding">
+                  <label for="search">Search by last name:</label>
+                  <input type="text" id="search" name="search" placeholder="Search by last name" dir="ltr" />
+                  <input type="submit" value="Search" />
+              </div>
+          </fieldset>
+      </form>  
       </div>
     </div>
   </div>
