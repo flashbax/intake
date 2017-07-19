@@ -227,20 +227,84 @@
               
          </fieldset>
       </form>
-      <form action="edit.php" method="get">
+        
+      <form name="search" action="" method="get">
           <fieldset>
               <div class="row" id="container-padding">
                   <label for="search">Search by last name:</label>
                   <input type="text" id="search" name="search" placeholder="Search by last name" dir="ltr" />
-                  <input type="submit" value="Search" />
+                  <input type="submit" value="Search" /><br />
+              
+                  <?php
+                         //initialization at the top
+
+                         //connect to database
+                         $conn = mysqli_connect("localhost", "root", "", "intake_form");
+                        //check if connection failed
+                         if(mysqli_connect_errno()) { 
+                          echo "Failed to connect: " . mysqli_connect_error();
+                         }
+
+                         //echo "success";
+                         //exit();
+
+
+                  ?>
+                  
+
+                  <?php
+                    //error_reporting(0);
+
+                    $output = '';
+
+                    //if the text box isn't empty and space isn't empty run this
+                    if(isset ($_GET['search']) && $_GET['search'] !== '') { 
+                      $search = $_GET['search'];
+
+                      $s = mysqli_query($conn, "SELECT * FROM intake_data WHERE user_lastname LIKE '%$search%'") OR die(mysqli_error());
+                      $c = mysqli_num_rows($s);
+
+                      if($c == 0) { 
+                        $output = 'No search results for <strong>"' . $search . '"</strong>';
+                      } else { 
+                        while ($row = mysqli_fetch_array($s)) {
+
+                          $output .= 'Name: <strong>' . $row['user_firstname'] .' ' .  $row['user_lastname'] .'</strong> <br />
+                                <form action="" method="post" enctype="multipart/form-data">
+                                  <textarea id="commentu" name="commentu" value="' . $row['user_comment'] . '">'. $row['user_comment'] .'</textarea><br />      
+                                  <input type="text" name="hidden" value="' . $row['id'] . '" />
+                                  <input type="submit" name="update" value="Update Records" /><br /><br />
+                                </form>';
+                        }
+                      }
+                      
+                    } else { 
+                      //header("location: ./edit-comments.html");
+                      //print('Please enter text!');
+                    }
+                    
+                  ?>
+                 
+
               </div>
           </fieldset>
-      </form>  
+      </form> 
+      <?php
+          print("$output");
+           if(isset ($_POST['update'])) { 
+                        mysqli_query($conn, "UPDATE intake_data SET user_comment='$_POST[commentu]' WHERE user_comment='$_POST[hidden]'");
+                      }
+          mysqli_close($conn); 
+        ?>
       </div>
     </div>
   </div>
+
+
 
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
 </html>
+
+
