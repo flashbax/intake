@@ -16,6 +16,7 @@
   <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link href="https://fonts.googleapis.com/css?family=Khula" rel="stylesheet">
+  <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -35,30 +36,35 @@
   <div class="container">
     <div class="row">
       <div class="twelve columns">
-        <div class="row" id="container-padding">
+        <div class="row">
           <div class="twelve columns"><img src="images/logo.png" /></div>
         </div>  
-        <div class="row" id="container-padding">
-          <div class="twelve columns"><h4>Potential New Client Form</h4></div>
+        <div class="row">
+          <div class="twelve columns"><br /><h4>POTENTIAL NEW CLIENT FORM</h4></div>
         </div>
         <form action="process.php" method="post" enctype="multipart/form-data">
          <fieldset>
-            <div class="row" id="container-padding">
-              <div class="four columns">
+            <div class="row">
+              <div class="twelve columns">
                 <label for="name">First Name:</label>
                 <input type="text" id="firstname" name="firstname" placeholder="Enter first name" />
               </div>
-              <div class="four columns">
+            </div>
+            <div class="row">
+              <div class="twelve columns">
                 <label for="email">Last Name:</label>
                 <input type="text" id="lastname" name="lastname" placeholder="Enter last name" />
               </div>
-              <div class="four columns">
+            </div>
+            <div class="row">
+              <div class="twelve columns">
                 <label for="email">Phone:</label>
                 <input type="text" id="phone" name="phone" placeholder="Enter phone number" />
               </div>
             </div>
-            <div class="row" id="container-padding">
-              <div class="four columns">
+            
+            <div class="row">
+              <div class="twelve columns">
                 <label for="refferal">Referral Source:</label>
                   <select name="referral" id="referral" placeholder="Enter referral">
                     <option value="Advertising (General)">Advertising (General)</option>
@@ -162,7 +168,9 @@
                     <option value="Yellow Pages">Yellow Pages</option>
                   </select>
               </div>
-              <div class="four columns">
+            </div>
+            <div class="row">
+              <div class="twelve columns">
                 <label for="lawyer">Lawyer:</label>
                 <select name="lawyer" id="lawyer" placeholder="Enter Lawyer">
                   <option value="Alfred M. Kwinter">Alfred M. Kwinter</option>
@@ -176,7 +184,9 @@
                   <option value="Susan K. Dhaliwal">Susan K. Dhaliwal</option>
                 </select>
               </div>
-              <div class="four columns">
+            </div>
+            <div class="row">
+              <div class="twelve columns">
                 <label for="type">Type of File:</label>
                 <select name="type" id="type" placeholder="Enter Type of File">
                   <option value="Assault">Assault</option>
@@ -203,34 +213,42 @@
                 </select>
               </div>
             </div>
-            <div class="row" id="container-padding">
-              <div class="four columns">
+            <div class="row">
+              <div class="twelve columns">
                 <label for="dateofcontact">Date of Contact:</label>
                 <input type="date" id="dateofcontact" name="dateofcontact" placeholder="Enter the date" />
               </div>
-              <div class="four columns">
+            </div>
+            <div class="row">
+              <div class="twelve columns">
                 <label for="formfilledby">Form Filled By:</label>
                 <input type="text" id="formfilledby" name="formfilledby" placeholder="Enter your name" />
               </div>
-              <div class="four columns">
+            </div>
+            <div class="row">
+              <div class="twelve columns">
                 <label for="comments">Comments:</label>
-                <textarea id="comments" name="comments" placeholder="Enter comments about the PNC"></textarea>
+                <textarea id="comments" name="comments" placeholder="Enter comments about the PNC" cols="40"></textarea>
               </div>
             </div>
-            <div class="row twelve columns" id="container-padding">
-              
+            <div class="row twelve columns">
                 <input type="submit" value="Save PNC" />
                 <input type="reset" value="Reset">
-                <input type="button" value="Admin">
-              
-            </div>
-              
+            </div>   
          </fieldset>
       </form>
+
+      <form name="search" action="report.php" method="get">
+      <fieldset>
+        <div class="row twelve columns">
+          <input type="submit" value="Admin">
+        </div>
+      </fieldset>
+      </form>
         
-      <form name="search" action="" method="get">
+      <form name="search" action="index.php" method="get">
           <fieldset>
-              <div class="row" id="container-padding">
+              <div class="row">
                   <label for="search">Search by last name:</label>
                   <input type="text" id="search" name="search" placeholder="Search by last name" dir="ltr" />
                   <input type="submit" value="Search" /><br />
@@ -244,13 +262,7 @@
                          if(mysqli_connect_errno()) { 
                           echo "Failed to connect: " . mysqli_connect_error();
                          }
-
-                         //echo "success";
-                         //exit();
-
-
                   ?>
-                  
 
                   <?php
                     //error_reporting(0);
@@ -269,31 +281,46 @@
                       } else { 
                         while ($row = mysqli_fetch_array($s)) {
 
-                          $output .= 'Name: <strong>' . $row['user_firstname'] .' ' .  $row['user_lastname'] .'</strong> <br />
-                                <form action="" method="post" enctype="multipart/form-data">
-                                  <textarea id="commentu" name="commentu" value="' . $row['user_comment'] . '">'. $row['user_comment'] .'</textarea><br />      
-                                  <input type="text" name="hidden" value="' . $row['id'] . '" />
-                                  <input type="submit" name="update" value="Update Records" /><br /><br />
+                          $first = $row['user_firstname'];
+                          $last = $row['user_lastname'];
+                          $comment = $row['user_comment']; 
+                          $id = $row['id'];
+
+                          $output .= '
+                                <div class="row">
+                                <strong>' . $first .' ' .  $last .'</strong> <i class="fa fa-pencil" aria-hidden="true"></i><br />
+                                </div>
+                                
+                                <form action="index.php" method="post" enctype="multipart/form-data">
+                                  <fieldset>
+                                    <div class="row">
+                                    <textarea id="commentu" name="commentu" value="' . $comment . '" cols="40">'. $comment .'</textarea><br />      
+                                    <input type="hidden" name="hidden" value="' . $id . '" />
+                                    <input type="submit" name="update" value="Update ' . $first .' ' .  $last . ' Record" /><br />
+                                    </div>
+                                  </fieldset>
                                 </form>';
+                          }
                         }
                       }
-                      
-                    } else { 
-                      //header("location: ./edit-comments.html");
-                      //print('Please enter text!');
-                    }
-                    
                   ?>
                  
-
               </div>
           </fieldset>
       </form> 
-      <?php
-          print("$output");
-           if(isset ($_POST['update'])) { 
-                        mysqli_query($conn, "UPDATE intake_data SET user_comment='$_POST[commentu]' WHERE user_comment='$_POST[hidden]'");
-                      }
+        <?php
+           print("$output");
+           //write updates to comments to database 
+           if(isset ($_POST['update'])) {     
+              
+              $updated = mysqli_query($conn, "UPDATE intake_data SET user_comment='$_POST[commentu]' WHERE id='$_POST[hidden]'") or die("The comment for has not been updated."); 
+              
+              if ($updated) { 
+                print ("The update was successful!");
+              }
+
+            }
+
           mysqli_close($conn); 
         ?>
       </div>

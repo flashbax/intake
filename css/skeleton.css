@@ -186,7 +186,9 @@ input[type="button"] {
   border-radius: 4px;
   border: 1px solid #bbb;
   cursor: pointer;
-  box-sizing: border-box; }
+  box-sizing: border-box; 
+
+  }
 .button:hover,
 button:hover,
 input[type="submit"]:hover,
@@ -240,8 +242,9 @@ select {
   border: 1px solid #D1D1D1;
   border-radius: 4px;
   box-shadow: none;
-  box-sizing: border-box; 
-  width: 160px;}
+  box-sizing: border-box;  
+
+  }
 /* Removes awkward default styles on some inputs for iOS */
 input[type="email"],
 input[type="number"],
