@@ -42,19 +42,20 @@
      }
 ?>
 
-<form action="report.php" method="POST">
+<form action="#" method="GET">
       <div class="row">
           <label for="report">Search based on:</label>
            <select name="subject">
            <option>Select Referral</option>          
                 <?php
-                  $queryref = "SELECT * FROM intake_data";
+
+                  $queryref = "SELECT DISTINCT user_referral FROM intake_data";
                   $resultref = mysqli_query($conn, $queryref);
                   while($rowsref = mysqli_fetch_array($resultref)) {
                     $rowsrefid = $rowsref['id'];
                     $rowsrefdata = $rowsref['user_referral']; 
                 ?>
-                    <option value=""><?php echo $rowsrefdata; ?></option> 
+                    <option><?php echo $rowsrefdata; ?></option> 
 
                 <?php    
                   }
@@ -63,47 +64,59 @@
             <select name="type">
             <option>Select Type of File</option>          
                 <?php
-                  $querytype = "SELECT * FROM intake_data";
+                  $querytype = "SELECT DISTINCT user_type FROM intake_data";
                   $resulttype = mysqli_query($conn, $querytype);
                   while($rowstype = mysqli_fetch_array($resulttype)) {
                     $rowstypeid = $rowstype['id']; 
                     $rowstypedata = $rowstype['user_type']; 
                 ?>
-                    <option value=""><?php echo $rowstypedata; ?></option> 
+                    <option><?php echo $rowstypedata; ?></option> 
 
                 <?php    
                   }
                 ?>
             </select>
-            <input type="submit" name="genreport" value="go">
+            <input type="submit" value="go" name="genreport">
         </div>
         <div class="row">
-            <div class="six columns">Referral</div>
-            <div class="six columns">Type of File</div>
+            <div class="three columns">First Name</div>
+            <div class="three columns">Last Name</div>
+            <div class="three columns">Referral</div>
+            <div class="three columns">Type of File</div>
         </div>
         <div class="row">
             <?php
-                if (isset($_POST['genreport']) ? $_POST['genreport'] : '') { 
+            // error_reporting(0);
+                if (isset($_GET['genreport']) ? $_GET['genreport'] : '') { 
                 
-                $subject = $_POST['subject'];
-                $type = $_POST['type'];
+                $subject = $_GET['subject'];
+                $type = $_GET['type'];
                 
-                $query = "SELECT user_referral, user_type FROM intake_data 
-                WHERE user_referral = 'subject' 
-                AND user_type = '$type'";
+                $query = "SELECT user_firstname, user_lastname, user_referral, user_type FROM intake_data WHERE user_referral='$subject' AND user_type='$type'";
 
-                $result = mysqli_query($conn, $query);
-                while($rows = mysqli_fetch_array($result)) {
-                    $rowsdata = $rows['user_referral']; 
-                    $rowstype = $rows['user_type'];
+                $result = mysqli_query($conn, $query) OR die(mysqli_error());
+
+                if (!$result) {
+                    printf("Error: %s\n", mysqli_error($conn));
+                exit(); }
+
+                while($therows = mysqli_fetch_array($result)) {
+
+                    $rowsfirst = $therows['user_firstname']; 
+                    $rowslast = $therows['user_lastname']; 
+                    $rowsdata = $therows['user_referral']; 
+                    $rowstype = $therows['user_type'];
+                     
                 ?>
-                <div class="row">   
-                     <div class="six columns"><?php echo $rowsdata; ?></div>
-                     <div class="six columns"><?php echo $rowstype; ?></div>
+                <div class="row"> 
+                     <div class="three columns"><?php echo $rowsfirst; ?></div>
+                     <div class="three columns"><?php echo $rowslast; ?></div>  
+                     <div class="three columns"><?php echo $rowsdata; ?></div>
+                     <div class="three columns"><?php echo $rowstype; ?></div>
                 </div>
 
             <?php    
-                  }
+                  } 
                 }
             ?>
         </div>
