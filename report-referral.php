@@ -44,7 +44,7 @@
 
 <form action="#" method="GET">
       <div class="row">
-          <label for="report">Search based on:</label>
+          <h2>Referral and Type of File</h2>
            <select name="subject">
            <option>Select Referral</option>          
                 <?php
@@ -53,9 +53,10 @@
                   $resultref = mysqli_query($conn, $queryref);
                   while($rowsref = mysqli_fetch_array($resultref)) {
                     $rowsrefid = $rowsref['id'];
-                    $rowsrefdata = $rowsref['user_referral']; 
+                    $rowsrefdata = $rowsref['user_referral'];
+                    $r = mysqli_real_escape_string($conn, $rowsrefdata)
                 ?>
-                    <option><?php echo $rowsrefdata; ?></option> 
+                    <option><?php echo htmlspecialchars($r); ?></option> 
 
                 <?php    
                   }
@@ -79,10 +80,12 @@
             <input type="submit" value="go" name="genreport">
         </div>
         <div class="row">
-            <div class="three columns">First Name</div>
-            <div class="three columns">Last Name</div>
-            <div class="three columns">Referral</div>
-            <div class="three columns">Type of File</div>
+            <div class="two columns">First Name</div>
+            <div class="two columns">Last Name</div>
+            <div class="two columns">Referral</div>
+            <div class="two columns">Lawyer</div>
+            <div class="two columns">Type of File</div>
+            <div class="two columns">Date</div>
         </div>
         <div class="row">
             <?php
@@ -92,27 +95,31 @@
                 $subject = $_GET['subject'];
                 $type = $_GET['type'];
                 
-                $query = "SELECT user_firstname, user_lastname, user_referral, user_type FROM intake_data WHERE user_referral='$subject' AND user_type='$type'";
+                $query = "SELECT user_firstname, user_lastname, user_referral, user_lawyer, user_type, user_date FROM intake_data WHERE user_referral='$subject' AND user_type='$type'";
 
-                $result = mysqli_query($conn, $query) OR die(mysqli_error());
+                $result = mysqli_query($conn, $query) OR die(mysqli_error($conn));
 
                 if (!$result) {
                     printf("Error: %s\n", mysqli_error($conn));
                 exit(); }
 
-                while($therows = mysqli_fetch_array($result)) {
+                while($therefrows = mysqli_fetch_array($result)) {
 
-                    $rowsfirst = $therows['user_firstname']; 
-                    $rowslast = $therows['user_lastname']; 
-                    $rowsdata = $therows['user_referral']; 
-                    $rowstype = $therows['user_type'];
+                    $rowsreffirst = $therefrows['user_firstname']; 
+                    $rowsreflast = $therefrows['user_lastname']; 
+                    $rowsrefdata = $therefrows['user_referral']; 
+                    $rowsreflawyer = $therefrows['user_lawyer']; 
+                    $rowsreftype = $therefrows['user_type'];
+                    $rowsrefdate = $therefrows['user_date'];
                      
                 ?>
                 <div class="row"> 
-                     <div class="three columns"><?php echo $rowsfirst; ?></div>
-                     <div class="three columns"><?php echo $rowslast; ?></div>  
-                     <div class="three columns"><?php echo $rowsdata; ?></div>
-                     <div class="three columns"><?php echo $rowstype; ?></div>
+                     <div class="two columns"><?php echo $rowsreffirst; ?></div>
+                     <div class="two columns"><?php echo $rowsreflast; ?></div>  
+                     <div class="two columns"><?php echo $rowsrefdata; ?></div>
+                     <div class="two columns"><?php echo $rowsreflawyer; ?></div>
+                     <div class="two columns"><?php echo $rowsreftype; ?></div>
+                     <div class="two columns"><?php echo $rowsrefdate; ?></div>
                 </div>
 
             <?php    
@@ -120,6 +127,8 @@
                 }
             ?>
         </div>
+        <div><a href="index.php">Back</div>
+        <div><a href="report-date.php">Date Search</div>
 </form>
 
 

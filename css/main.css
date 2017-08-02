@@ -16,3 +16,7 @@ input[type="reset"],
 input[type="button"] {
 	background-color: #fff !important;
 }
+
+#report { 
+	font-size: 16px;
+ }

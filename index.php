@@ -238,14 +238,22 @@
          </fieldset>
       </form>
 
-      <form name="search" action="report.php" method="get">
+      <form name="reportreferral" action="report-referral.php" method="get">
       <fieldset>
         <div class="row twelve columns">
-          <input type="submit" value="Admin">
+          <input type="submit" value="Generate Report by Referral & Type of File">
         </div>
       </fieldset>
       </form>
-        
+      
+      <form name="reportdate" action="report-date.php" method="get">
+      <fieldset>
+        <div class="row twelve columns">
+          <input type="submit" value="Generate Report by Date">
+        </div>
+      </fieldset>
+      </form>
+
       <form name="search" action="index.php" method="get">
           <fieldset>
               <div class="row">
