@@ -59,7 +59,7 @@
             <div class="row">
               <div class="twelve columns">
                 <label for="email">Phone:</label>
-                <input type="text" id="phone" name="phone" placeholder="Enter phone number" />
+                <input type="text" maxlength="10" id="phone" name="phone" placeholder="Enter phone number" />
               </div>
             </div>
             
@@ -84,7 +84,7 @@
                     <option value="Brampton Billboard">Brampton Billboard</option>
                     <option value="Brampton Guardian Ad">Brampton Guardian Ad</option>
                     <option value="Brampton Transit Shelter">Brampton Transit Shelter</option>
-                    <option value="Canada 4111">Canada 411</option>
+                    <option value="Canada 411">Canada 411</option>
                     <option value="Canada Law List - Legal Directory">Canada Law List - Legal Directory</option>
                     <option value="Canadian Law Magazine">Canadian Law Magazine</option>
                     <option value="Canadian Lawyer">Canadian Lawyer</option>
@@ -180,7 +180,7 @@
                   <option value="Shane H. Katz">Shane H. Katz</option>
                   <option value="Veronica S. Marson">Veronica S. Marson</option>
                   <option value="Nga T. Dang">Nga T. Dang</option>
-                  <option value="Susan ">Shane Z. Kwinter</option>
+                  <option value="Shane Z. Kwinter">Shane Z. Kwinter</option>
                   <option value="Susan K. Dhaliwal">Susan K. Dhaliwal</option>
                 </select>
               </div>
@@ -319,10 +319,13 @@
         <?php
            print("$output");
            //write updates to comments to database 
-           if(isset ($_POST['update'])) {     
+           if(isset ($_POST['update'])) { 
+              $updatecom = $_POST['commentu']; 
+              $comfix = mysqli_real_escape_string($conn, $updatecom);   
               
-              $updated = mysqli_query($conn, "UPDATE intake_data SET user_comment='$_POST[commentu]' WHERE id='$_POST[hidden]'") or die("The comment for has not been updated."); 
-              
+              $updated = mysqli_query($conn, "UPDATE intake_data SET user_comment='$comfix' WHERE id='$_POST[hidden]'") or die("The comment for has not been updated."); 
+              //$up = mysqli_real_escape_string($conn, $updated);
+
               if ($updated) { 
                 print ("The update was successful!");
               }

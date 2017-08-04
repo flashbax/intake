@@ -1,3 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Singer Kwinter - Intake Form</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="https://fonts.googleapis.com/css?family=Khula" rel="stylesheet">
+  <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+  <div class="container">
+    <div class="row">
+      <div class="twelve columns">
+        <div class="row">
+        <div><img src="images/logo.png" /></div>
+        
+          
+        
 <?php
 //reset intake data id to 0 ALTER TABLE `intake_data` AUTO_INCREMENT=0
 //process.php
@@ -19,6 +63,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {//Check it is coming from a form
     $u_formfilledby = filter_var($_POST["formfilledby"], FILTER_SANITIZE_STRING);
     $u_comments = filter_var($_POST["comments"], FILTER_SANITIZE_STRING);
     
+    
+    $u_phone_dashes = '('.substr($u_phone , 0, 3).') '.substr($u_phone , 3, 3).'-'.substr($u_phone ,6);
+
     if (empty($u_firstname)){
         die("Please enter your first name");
     }
@@ -27,9 +74,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {//Check it is coming from a form
         die("Please enter your last name");
     }
         
-    if (empty($u_phone)){
+    if (empty($u_phone_dashes)){ //(preg_match('/^\d{10}$/', $u_phone_dashes)) {
+        // pass
+    //} else {
         die("Please enter phone number");
-    } 
+    }
 
     if (empty($u_dateofcontact)){
         die("Please enter the date of contact");
@@ -55,25 +104,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {//Check it is coming from a form
     
     $statement = $mysqli->prepare("INSERT INTO intake_data (user_firstname, user_lastname, user_phone, user_referral, user_lawyer, user_type, user_date, user_formfilledby, user_comment) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"); //prepare sql insert query
     //bind parameters for markers, where (s = string, i = integer, d = double,  b = blob)
-    $statement->bind_param('sssssssss', $u_firstname, $u_lastname, $u_phone, $u_referral, $u_lawyer, $u_type, $u_dateofcontact, $u_formfilledby, $u_comments); //bind values and execute insert query
+    $statement->bind_param('sssssssss', $u_firstname, $u_lastname, $u_phone_dashes, $u_referral, $u_lawyer, $u_type, $u_dateofcontact, $u_formfilledby, $u_comments); //bind values and execute insert query
     
+
     if($statement->execute()){
-        //print output text
-        print "Thank you " . $u_firstname . ". Your submission has been added to the database.<br /><br />";
-        
-        print "First Name: " . $u_firstname . " <br />";
-        print "Last Name: " . $u_lastname . " <br />";
-        print "Phone Number: " . $u_phone . " <br />";
-        print "Referral Source: " . $u_referral . " <br />";
-        print "Lawyer: " . $u_lawyer . " <br />";
-        print "Type of File: " . $u_type . " <br />";
-        print "Date of Contact: " . $u_dateofcontact . " <br />";
-        print "Form Filled By:  " . $u_formfilledby . " <br />";
-        print "Comments: " . $u_comments . " <br /><br />";
+         //print output text
+    ?>
+
+                    <br />
+                    <div><?php print "Thank you <strong> " . $u_formfilledby . "</strong>. Your submission has been added to the database."; ?></div>
+                    <br />
+                    <div><?php print "First Name: " . $u_firstname; ?></div>  
+                    <div><?php print "Last Name: " . $u_lastname; ?></div>
+                    <div><?php print "Phone Number: " . $u_phone_dashes; ?></div>
+                    <div><?php print "Referral Source: " . $u_referral; ?></div>
+                    <div><?php print "Lawyer: " . $u_lawyer; ?></div>
+                    <div><?php print "Type of File: " . $u_type; ?></div>
+                    <div><?php print "Date of Contact: " . $u_dateofcontact; ?></div>
+                    <div><?php print "Form Filled By:  " . $u_formfilledby; ?></div>
+                    <div><?php print "Comments: " . $u_comments; ?></div>
+                    <br />
+                    <div><a href="index.php">Back</div>          
+
+    <?php
+    
     }else{
         print $mysqli->error; //show mysql error if any
     }
 }
 
+// ALTER TABLE intake_data AUTO_INCREMENT = 12
+
 ?>
+            </div>  
+        </div>
+    </div>
+  </div>
+
+
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
 

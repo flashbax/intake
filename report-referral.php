@@ -51,12 +51,19 @@
 
                   $queryref = "SELECT DISTINCT user_referral FROM intake_data";
                   $resultref = mysqli_query($conn, $queryref);
+
+
+                
                   while($rowsref = mysqli_fetch_array($resultref)) {
                     $rowsrefid = $rowsref['id'];
                     $rowsrefdata = $rowsref['user_referral'];
-                    $r = mysqli_real_escape_string($conn, $rowsrefdata)
+                    //$ref = mysqli_real_escape_string($conn, $rowsrefdata)
+                
+                 
                 ?>
-                    <option><?php echo htmlspecialchars($r); ?></option> 
+
+                <?php echo '<option> '. $rowsrefdata .' </option>'; ?>
+                
 
                 <?php    
                   }
@@ -93,9 +100,13 @@
                 if (isset($_GET['genreport']) ? $_GET['genreport'] : '') { 
                 
                 $subject = $_GET['subject'];
+                //single and double quote fix
+                $subqfix = mysqli_real_escape_string($conn, $subject);
                 $type = $_GET['type'];
+                //single and double quote fix
+                $typeqfix = mysqli_real_escape_string($conn, $type);
                 
-                $query = "SELECT user_firstname, user_lastname, user_referral, user_lawyer, user_type, user_date FROM intake_data WHERE user_referral='$subject' AND user_type='$type'";
+                $query = "SELECT user_firstname, user_lastname, user_referral, user_lawyer, user_type, user_date FROM intake_data WHERE user_referral='$subqfix' AND user_type='$typeqfix'";
 
                 $result = mysqli_query($conn, $query) OR die(mysqli_error($conn));
 
@@ -111,6 +122,7 @@
                     $rowsreflawyer = $therefrows['user_lawyer']; 
                     $rowsreftype = $therefrows['user_type'];
                     $rowsrefdate = $therefrows['user_date'];
+
                      
                 ?>
                 <div class="row"> 
