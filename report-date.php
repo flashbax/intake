@@ -51,14 +51,16 @@
             
             <input type="submit" value="go" name="gendate">
         </div>
-        <div class="row">
-            <div class="two columns">First Name</div>
-            <div class="two columns">Last Name</div>
-            <div class="two columns">Referral</div>
-            <div class="two columns">Lawyer</div>
-            <div class="two columns">Type of File</div>
-            <div class="two columns">Date</div>
-        </div>
+
+        <table cellpadding="0" cellspacing="0" align="center"> 
+          <tr>
+            <td><strong>First Name</strong></td>
+            <td><strong>Last Name</strong></td> 
+            <td><strong>Referral</strong></td> 
+            <td><strong>Lawyer</strong></td> 
+            <td><strong>Type of File</strong></td> 
+            <td><strong>Date</strong></td> 
+          </tr>
         <div class="row">
             <?php
             // error_reporting(0);
@@ -85,20 +87,22 @@
                     $rowsdate = $therows['user_date'];
                      
                 ?>
-                <div class="row"> 
-                     <div class="two columns"><?php echo $rowsfirst; ?></div>
-                     <div class="two columns"><?php echo $rowslast; ?></div>  
-                     <div class="two columns"><?php echo $rowsdata; ?></div>
-                     <div class="two columns"><?php echo $rowslawyer; ?></div>
-                     <div class="two columns"><?php echo $rowstype; ?></div>
-                     <div class="two columns"><?php echo $rowsdate; ?></div>
-                </div>
+                  <tr>
+                    <td><?php echo $rowsfirst; ?></td>
+                    <td><?php echo $rowslast; ?></td> 
+                    <td><?php echo $rowsdata; ?></td> 
+                    <td><?php echo $rowslawyer; ?></td> 
+                    <td><?php echo $rowstype; ?></td> 
+                    <td><?php echo $rowsdate; ?></td> 
+                  </tr>
+                
 
             <?php    
                   } 
                 }
             ?>
         </div>
+        </table>
         <div><a href="index.php">Back</div>
         <div><a href="report-referral.php">Referral and Type of File Search</div>
 </form>

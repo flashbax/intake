@@ -57,8 +57,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {//Check it is coming from a form
     $u_lastname = filter_var($_POST["lastname"], FILTER_SANITIZE_STRING);
     $u_phone = filter_var($_POST["phone"], FILTER_SANITIZE_STRING);
     $u_referral = $_POST["referral"];
+    $u_referral_other = $_POST["referralother"];
     $u_lawyer = $_POST["lawyer"];
     $u_type = $_POST["type"];
+    $u_type_other = $_POST["typeother"];
     $u_dateofcontact = filter_var($_POST["dateofcontact"], FILTER_SANITIZE_STRING);
     $u_formfilledby = filter_var($_POST["formfilledby"], FILTER_SANITIZE_STRING);
     $u_comments = filter_var($_POST["comments"], FILTER_SANITIZE_STRING);
@@ -74,9 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {//Check it is coming from a form
         die("Please enter your last name");
     }
         
-    if (empty($u_phone_dashes)){ //(preg_match('/^\d{10}$/', $u_phone_dashes)) {
-        // pass
-    //} else {
+    if (empty($u_phone)){ 
         die("Please enter phone number");
     }
 
@@ -102,9 +102,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {//Check it is coming from a form
         die('Error : ('. $mysqli->connect_errno .') '. $mysqli->connect_error);
     }   
     
-    $statement = $mysqli->prepare("INSERT INTO intake_data (user_firstname, user_lastname, user_phone, user_referral, user_lawyer, user_type, user_date, user_formfilledby, user_comment) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"); //prepare sql insert query
+    $statement = $mysqli->prepare("INSERT INTO intake_data (user_firstname, user_lastname, user_phone, user_referral, user_referral_other, user_lawyer, user_type, user_type_other, user_date, user_formfilledby, user_comment) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"); //prepare sql insert query
     //bind parameters for markers, where (s = string, i = integer, d = double,  b = blob)
-    $statement->bind_param('sssssssss', $u_firstname, $u_lastname, $u_phone_dashes, $u_referral, $u_lawyer, $u_type, $u_dateofcontact, $u_formfilledby, $u_comments); //bind values and execute insert query
+    $statement->bind_param('sssssssssss', $u_firstname, $u_lastname, $u_phone_dashes, $u_referral, $u_referral_other, $u_lawyer, $u_type, $u_type_other, $u_dateofcontact, $u_formfilledby, $u_comments); //bind values and execute insert query
     
 
     if($statement->execute()){
@@ -118,8 +118,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {//Check it is coming from a form
                     <div><?php print "Last Name: " . $u_lastname; ?></div>
                     <div><?php print "Phone Number: " . $u_phone_dashes; ?></div>
                     <div><?php print "Referral Source: " . $u_referral; ?></div>
+                    <div><?php print "Referral Source Other: " . $u_referral_other; ?></div>
                     <div><?php print "Lawyer: " . $u_lawyer; ?></div>
                     <div><?php print "Type of File: " . $u_type; ?></div>
+                    <div><?php print "Type of File: " . $u_type_other; ?></div>
                     <div><?php print "Date of Contact: " . $u_dateofcontact; ?></div>
                     <div><?php print "Form Filled By:  " . $u_formfilledby; ?></div>
                     <div><?php print "Comments: " . $u_comments; ?></div>

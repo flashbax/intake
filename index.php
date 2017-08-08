@@ -18,6 +18,9 @@
   <link href="https://fonts.googleapis.com/css?family=Khula" rel="stylesheet">
   <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
 
+  <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
+
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="stylesheet" href="css/normalize.css">
@@ -65,7 +68,7 @@
             
             <div class="row">
               <div class="twelve columns">
-                <label for="refferal">Referral Source:</label>
+                <label for="referral">Referral Source:</label>
                   <select name="referral" id="referral" placeholder="Enter referral">
                     <option value="Advertising (General)">Advertising (General)</option>
                     <option value="Advocates Journal">Advocates Journal</option>
@@ -171,6 +174,11 @@
             </div>
             <div class="row">
               <div class="twelve columns">
+                <input type="text" id="referralother" name="referralother" placeholder="Enter the Referral"  style="display: none"/>
+              </div>
+            </div>
+            <div class="row">
+              <div class="twelve columns">
                 <label for="lawyer">Lawyer:</label>
                 <select name="lawyer" id="lawyer" placeholder="Enter Lawyer">
                   <option value="Alfred M. Kwinter">Alfred M. Kwinter</option>
@@ -211,6 +219,11 @@
                   <option value="WSIB Claim">WSIB Claim</option>
                   <option value="Other">Other</option>
                 </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="twelve columns">
+                <input type="text" id="typeother" name="typeother" placeholder="Enter the Type of File"  style="display: none"/>
               </div>
             </div>
             <div class="row">
