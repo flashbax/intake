@@ -33,6 +33,7 @@
 
 </head>
 <body>
+
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   
@@ -45,31 +46,31 @@
         <div class="row">
           <div class="twelve columns"><br /><h4>POTENTIAL NEW CLIENT FORM</h4></div>
         </div>
-        <form action="process.php" method="post" enctype="multipart/form-data">
+        <form action="#" method="post" enctype="multipart/form-data">
          <fieldset>
             <div class="row">
               <div class="twelve columns">
-                <label for="name">First Name:</label>
-                <input type="text" id="firstname" name="firstname" placeholder="Enter first name" />
+                <label for="name">First Name: <?php if((isset($_POST['firstname'])) && (empty($u_firstname))) { echo "Please enter your first name"; } else { echo " "; } ?></label>
+                <input type="text" id="firstname" name="firstname" placeholder="Enter first name" value="<?php if(isset($_POST['firstname'])) { echo htmlentities($_POST['firstname']); } ?>" />
               </div>
             </div>
             <div class="row">
               <div class="twelve columns">
                 <label for="email">Last Name:</label>
-                <input type="text" id="lastname" name="lastname" placeholder="Enter last name" />
+                <input type="text" id="lastname" name="lastname" placeholder="Enter last name" value="<?php if(isset($_POST['lastname'])) { echo htmlentities($_POST['lastname']); } ?>" />
               </div>
             </div>
             <div class="row">
               <div class="twelve columns">
                 <label for="email">Phone:</label>
-                <input type="text" maxlength="10" id="phone" name="phone" placeholder="Enter phone number" />
+                <input type="text" maxlength="10" id="phone" name="phone" placeholder="Enter phone number" value="<?php if(isset($_POST['phone'])) { echo htmlentities($_POST['phone']); } ?>" />
               </div>
             </div>
             
             <div class="row">
               <div class="twelve columns">
                 <label for="referral">Referral Source:</label>
-                  <select name="referral" id="referral" placeholder="Enter referral">
+                  <select name="referral" id="referral" placeholder="Enter referral" value="<?php if(isset($_POST['referral'])) { echo htmlentities($_POST['referral']); } ?>">
                     <option value="Advertising (General)">Advertising (General)</option>
                     <option value="Advocates Journal">Advocates Journal</option>
                     <option value="Ajax Pickering">Ajax Pickering</option>
@@ -174,13 +175,13 @@
             </div>
             <div class="row">
               <div class="twelve columns">
-                <input type="text" id="referralother" name="referralother" placeholder="Enter the Referral"  style="display: none"/>
+                <input type="text" id="referralother" name="referralother" placeholder="Enter the Referral"  value="<?php if(isset($_POST['referralother'])) { echo htmlentities($_POST['referralother']); } ?>" style="display: none"/>
               </div>
             </div>
             <div class="row">
               <div class="twelve columns">
                 <label for="lawyer">Lawyer:</label>
-                <select name="lawyer" id="lawyer" placeholder="Enter Lawyer">
+                <select name="lawyer" id="lawyer" placeholder="Enter Lawyer" value="<?php if(isset($_POST['lawyer'])) { echo htmlentities($_POST['lawyer']); } ?>">
                   <option value="Alfred M. Kwinter">Alfred M. Kwinter</option>
                   <option value="William A McMaster">William A McMaster</option>
                   <option value="Jason F. Katz">Jason F. Katz</option>
@@ -196,7 +197,7 @@
             <div class="row">
               <div class="twelve columns">
                 <label for="type">Type of File:</label>
-                <select name="type" id="type" placeholder="Enter Type of File">
+                <select name="type" id="type" placeholder="Enter Type of File" value="<?php if(isset($_POST['type'])) { echo htmlentities($_POST['type']); } ?>">
                   <option value="Assault">Assault</option>
                   <option value="Bicycle Accident">Bicycle Accident</option>
                   <option value="Civil Litigation">Civil Litigation</option>
@@ -223,25 +224,25 @@
             </div>
             <div class="row">
               <div class="twelve columns">
-                <input type="text" id="typeother" name="typeother" placeholder="Enter the Type of File"  style="display: none"/>
+                <input type="text" id="typeother" name="typeother" placeholder="Enter the Type of File"  value="<?php if(isset($_POST['typeother'])) { echo htmlentities($_POST['typeother']); } ?>" style="display: none" style="display: none" />
               </div>
             </div>
             <div class="row">
               <div class="twelve columns">
                 <label for="dateofcontact">Date of Contact:</label>
-                <input type="date" id="dateofcontact" name="dateofcontact" placeholder="Enter the date" />
+                <input type="date" id="dateofcontact" name="dateofcontact" placeholder="Enter the date" value="<?php if(isset($_POST['dateofcontact'])) { echo htmlentities($_POST['dateofcontact']); } ?>" />
               </div>
             </div>
             <div class="row">
               <div class="twelve columns">
                 <label for="formfilledby">Form Filled By:</label>
-                <input type="text" id="formfilledby" name="formfilledby" placeholder="Enter your name" />
+                <input type="text" id="formfilledby" name="formfilledby" placeholder="Enter your name" value="<?php if(isset($_POST['formfilledby'])) { echo htmlentities($_POST['formfilledby']); } ?>" />
               </div>
             </div>
             <div class="row">
               <div class="twelve columns">
                 <label for="comments">Comments:</label>
-                <textarea id="comments" name="comments" placeholder="Enter comments about the PNC" cols="40"></textarea>
+                <textarea id="comments" name="comments" placeholder="Enter comments about the PNC" cols="40" value="<?php if(isset($_POST['comments'])) { echo htmlentities($_POST['comments']); } ?>"></textarea>
               </div>
             </div>
             <div class="row twelve columns">
@@ -250,6 +251,8 @@
             </div>   
          </fieldset>
       </form>
+
+      <?php include("inc/process-form.php"); ?>
 
       <form name="reportreferral" action="report-referral.php" method="get">
       <fieldset>

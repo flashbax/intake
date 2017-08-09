@@ -91,8 +91,10 @@
             <td><strong>First Name</strong></td>
             <td><strong>Last Name</strong></td> 
             <td><strong>Referral</strong></td> 
+            <td><strong>Referral Other</strong></td>
             <td><strong>Lawyer</strong></td> 
-            <td><strong>Type of File</strong></td> 
+            <td><strong>Type of File</strong></td>
+            <td><strong>Type of File Other</strong></td> 
             <td><strong>Date</strong></td> 
           </tr>
         <div class="row">
@@ -107,7 +109,7 @@
                 //single and double quote fix
                 $typeqfix = mysqli_real_escape_string($conn, $type);
                 
-                $query = "SELECT user_firstname, user_lastname, user_referral, user_lawyer, user_type, user_date FROM intake_data WHERE user_referral='$subqfix' AND user_type='$typeqfix'";
+                $query = "SELECT user_firstname, user_lastname, user_referral, user_referral_other, user_lawyer, user_type, user_type_other, user_date FROM intake_data WHERE user_referral='$subqfix' AND user_type='$typeqfix'";
 
                 $result = mysqli_query($conn, $query) OR die(mysqli_error($conn));
 
@@ -120,8 +122,10 @@
                     $rowsreffirst = $therefrows['user_firstname']; 
                     $rowsreflast = $therefrows['user_lastname']; 
                     $rowsrefdata = $therefrows['user_referral']; 
+                    $rowsrefdataother = $therefrows['user_referral_other']; 
                     $rowsreflawyer = $therefrows['user_lawyer']; 
                     $rowsreftype = $therefrows['user_type'];
+                    $rowsreftypeother = $therefrows['user_type_other'];
                     $rowsrefdate = $therefrows['user_date'];
 
                      
@@ -129,9 +133,11 @@
                   <tr>
                     <td><?php echo $rowsreffirst; ?></td>
                     <td><?php echo $rowsreflast; ?></td> 
-                    <td><?php echo $rowsrefdata; ?></td> 
+                    <td><?php echo $rowsrefdata; ?></td>
+                    <td><?php echo $rowsrefdataother; ?></td> 
                     <td><?php echo $rowsreflawyer; ?></td> 
-                    <td><?php echo $rowsreftype; ?></td> 
+                    <td><?php echo $rowsreftype; ?></td>
+                    <td><?php echo $rowsreftypeother; ?></td>  
                     <td><?php echo $rowsrefdate; ?></td> 
                   </tr>
                 

@@ -56,9 +56,11 @@
           <tr>
             <td><strong>First Name</strong></td>
             <td><strong>Last Name</strong></td> 
-            <td><strong>Referral</strong></td> 
+            <td><strong>Referral</strong></td>
+            <td><strong>Referral Other</strong></td> 
             <td><strong>Lawyer</strong></td> 
             <td><strong>Type of File</strong></td> 
+            <td><strong>Type of File Other</strong></td> 
             <td><strong>Date</strong></td> 
           </tr>
         <div class="row">
@@ -69,7 +71,7 @@
                 $datestart = $_GET['datestart'];
                 $dateend = $_GET['dateend'];
                 
-                $querydate = "SELECT user_firstname, user_lastname, user_referral, user_lawyer, user_type, user_date FROM intake_data WHERE user_date >='$datestart' AND user_date<='$dateend' ORDER BY user_date ASC";
+                $querydate = "SELECT user_firstname, user_lastname, user_referral, user_referral_other, user_lawyer, user_type, user_type_other, user_date FROM intake_data WHERE user_date >='$datestart' AND user_date<='$dateend' ORDER BY user_date ASC";
 
                 $dateresult = mysqli_query($conn, $querydate) OR die(mysqli_error());
 
@@ -82,8 +84,10 @@
                     $rowsfirst = $therows['user_firstname']; 
                     $rowslast = $therows['user_lastname']; 
                     $rowsdata = $therows['user_referral']; 
+                    $rowsdataother = $therows['user_referral_other'];
                     $rowslawyer = $therows['user_lawyer']; 
                     $rowstype = $therows['user_type'];
+                    $rowstypeother = $therows['user_type_other'];
                     $rowsdate = $therows['user_date'];
                      
                 ?>
@@ -91,8 +95,10 @@
                     <td><?php echo $rowsfirst; ?></td>
                     <td><?php echo $rowslast; ?></td> 
                     <td><?php echo $rowsdata; ?></td> 
-                    <td><?php echo $rowslawyer; ?></td> 
+                    <td><?php echo $rowsdataother; ?></td>
+                    <td><?php echo $rowslawyer; ?></td>
                     <td><?php echo $rowstype; ?></td> 
+                    <td><?php echo $rowstypeother; ?></td> 
                     <td><?php echo $rowsdate; ?></td> 
                   </tr>
                 
