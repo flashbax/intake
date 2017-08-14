@@ -15,4 +15,6 @@ $(document).ready(function() {
 	    else
 	        $('#typeother').hide();
     });
+
+
 });

@@ -46,23 +46,23 @@
         <div class="row">
           <div class="twelve columns"><br /><h4>POTENTIAL NEW CLIENT FORM</h4></div>
         </div>
-        <form action="#" method="post" enctype="multipart/form-data">
+        <form action="process-form.php" method="post" enctype="multipart/form-data">
          <fieldset>
             <div class="row">
               <div class="twelve columns">
-                <label for="name">First Name: <?php if((isset($_POST['firstname'])) && (empty($u_firstname))) { echo "Please enter your first name"; } else { echo " "; } ?></label>
+                <label for="firsttname">First Name:</label>
                 <input type="text" id="firstname" name="firstname" placeholder="Enter first name" value="<?php if(isset($_POST['firstname'])) { echo htmlentities($_POST['firstname']); } ?>" />
               </div>
             </div>
             <div class="row">
               <div class="twelve columns">
-                <label for="email">Last Name:</label>
+                <label for="lastname">Last Name:</label>
                 <input type="text" id="lastname" name="lastname" placeholder="Enter last name" value="<?php if(isset($_POST['lastname'])) { echo htmlentities($_POST['lastname']); } ?>" />
               </div>
             </div>
             <div class="row">
               <div class="twelve columns">
-                <label for="email">Phone:</label>
+                <label for="phone">Phone:</label>
                 <input type="text" maxlength="10" id="phone" name="phone" placeholder="Enter phone number" value="<?php if(isset($_POST['phone'])) { echo htmlentities($_POST['phone']); } ?>" />
               </div>
             </div>
@@ -252,8 +252,6 @@
          </fieldset>
       </form>
 
-      <?php include("inc/process-form.php"); ?>
-
       <form name="reportreferral" action="report-referral.php" method="get">
       <fieldset>
         <div class="row twelve columns">
@@ -360,5 +358,4 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
 </html>
-
 
