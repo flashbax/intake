@@ -16,5 +16,12 @@ $(document).ready(function() {
 	        $('#typeother').hide();
     });
 
+    $('#searchcon').hide();
+    $('.opensearch').click(function(){
+            $('#searchcon').show();
+            $('.opensearch').hide();
+    });
+
+   
 
 });
