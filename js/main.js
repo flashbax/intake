@@ -22,6 +22,11 @@ $(document).ready(function() {
             $('.opensearch').hide();
     });
 
-   
+    // $('#submitted').click(function(){
+    //     var hello = $('#val').text();
+    //     alert(hello);
+    // });
+
+
 
 });
