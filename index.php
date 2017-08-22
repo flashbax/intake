@@ -13,6 +13,11 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
+  <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
+  <script type="text/javascript" src="js/val.js"></script>
+
   <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link href="https://fonts.googleapis.com/css?family=Khula" rel="stylesheet">
@@ -48,30 +53,31 @@
         </div>
         
         
-        <form id="form" name="form">
+        <form id="form" name="form" onsubmit="return validate();">
          <fieldset>
             <div class="row">
               <div class="twelve columns">
-                <label for="firsttname">First Name:</label>
+                <label for="firsttname">First Name: <span style="color:red;" id="firstnameerror"></span></label>
+                
                 <input type="text" id="firstname" name="firstname" placeholder="Enter first name" value="<?php if(isset($_POST['firstname'])) { echo htmlentities($_POST['firstname']); } ?>" />
               </div>
             </div>
             <div class="row">
               <div class="twelve columns">
-                <label for="lastname">Last Name:</label>
+                <label for="lastname">Last Name: <span style="color:red;" id="lastnameerror"></span></label>
                 <input type="text" id="lastname" name="lastname" placeholder="Enter last name" value="<?php if(isset($_POST['lastname'])) { echo htmlentities($_POST['lastname']); } ?>" />
               </div>
             </div>
             <div class="row">
               <div class="twelve columns">
-                <label for="phone">Phone:</label>
+                <label for="phone">Phone: <span style="color:red;" id="phoneerror"></label>
                 <input type="text" maxlength="10" id="phone" name="phone" placeholder="Enter phone number" value="<?php if(isset($_POST['phone'])) { echo htmlentities($_POST['phone']); } ?>" />
               </div>
             </div>
             
             <div class="row">
               <div class="twelve columns">
-                <label for="referral">Referral Source:</label>
+                <label for="referral">Referral Source: <span style="color:red;" id="referralothererror"></label>
                   <select name="referral" id="referral" placeholder="Enter referral" value="<?php if(isset($_POST['referral'])) { echo htmlentities($_POST['referral']); } ?>">
                     <option value="Advertising (General)">Advertising (General)</option>
                     <option value="Advocates Journal">Advocates Journal</option>
@@ -198,7 +204,7 @@
             </div>
             <div class="row">
               <div class="twelve columns">
-                <label for="type">Type of File:</label>
+                <label for="type">Type of File: <span style="color:red;" id="typeothererror"></label>
                 <select name="type" id="type" placeholder="Enter Type of File" value="<?php if(isset($_POST['type'])) { echo htmlentities($_POST['type']); } ?>">
                   <option value="Assault">Assault</option>
                   <option value="Bicycle Accident">Bicycle Accident</option>
@@ -231,24 +237,24 @@
             </div>
             <div class="row">
               <div class="twelve columns">
-                <label for="dateofcontact">Date of Contact:</label>
+                <label for="dateofcontact">Date of Contact: <span style="color:red;" id="dateofcontacterror"></label>
                 <input type="date" id="dateofcontact" name="dateofcontact" placeholder="Enter the date" value="<?php if(isset($_POST['dateofcontact'])) { echo htmlentities($_POST['dateofcontact']); } ?>" />
               </div>
             </div>
             <div class="row">
               <div class="twelve columns">
-                <label for="formfilledby">Form Filled By:</label>
+                <label for="formfilledby">Form Filled By: <span style="color:red;" id="formfilledbyerror"></label>
                 <input type="text" id="formfilledby" name="formfilledby" placeholder="Enter your name" value="<?php if(isset($_POST['formfilledby'])) { echo htmlentities($_POST['formfilledby']); } ?>" />
               </div>
             </div>
             <div class="row">
               <div class="twelve columns">
-                <label for="comments">Comments:</label>
+                <label for="comments">Comments: <span style="color:red;" id="commentserror"></label>
                 <textarea id="comments" name="comments" placeholder="Enter comments about the PNC" cols="40" value="<?php if(isset($_POST['comments'])) { echo htmlentities($_POST['comments']); } ?>"></textarea>
               </div>
             </div>
             <div class="row twelve columns">
-                <input type="submit" onclick="validate()" value="Save PNC" />
+                <input type="submit" value="Save PNC" />
             </div>   
          </fieldset>
       </form>
@@ -359,9 +365,6 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
 
-  <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="js/main.js"></script>
-  <script type="text/javascript" src="js/val.js"></script>
 
 </body>
 </html>
