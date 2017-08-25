@@ -1,4 +1,4 @@
-  <?php
+<?php
   if (isset($_POST['send'])) { 
     
     $to = 'jkwitco@gmail.com';
@@ -18,9 +18,14 @@
     $headers = "From: jkwitco@gmail.com\r\n";
     $headers .= 'Content-Type: text/plain; charset=utf-8';
 
+    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+    if ($email) { 
+        $headers .= "\r\nReply-To: $email";
+    }
+
 
     $success = mail($to, $subject, $message, $headers);
-
+  
   } ?>
 
   <!DOCTYPE html>
@@ -86,4 +91,3 @@
         </div>
       </body>
       </html>
-      

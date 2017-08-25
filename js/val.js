@@ -95,9 +95,8 @@ var formfillcheck = document.form.formfilledby.value;
         data: dataString,
         cache: false,
         success: function(html) {
-        //location.href = "email.php";
-        alert(html);
-    }
+            window.location.replace(html);
+        }
 });
 
 }

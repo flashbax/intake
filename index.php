@@ -53,7 +53,7 @@
         </div>
         
         
-        <form id="form" name="form" onsubmit="return validate();" action="email.php">
+        <form id="form" name="form" method="post "onsubmit="return validate();">
          <fieldset>
             <div class="row">
               <div class="twelve columns">
