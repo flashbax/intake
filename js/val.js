@@ -10,8 +10,9 @@ var typeother = document.getElementById("typeother").value;
 var dateofcontact = document.getElementById("dateofcontact").value;
 var formfilledby = document.getElementById("formfilledby").value;
 var comments = document.getElementById("comments").value;
+var email = document.getElementById("email").value;
 // Returns successful data submission message when the entered information is stored in database.
-var dataString = 'firstname1=' + firstname + '&lastname1=' + lastname + '&phone1=' + phone + '&referral1=' + referral + '&referralother1=' + referralother + '&lawyer1=' + lawyer + '&type1=' + type + '&typeother1=' + typeother + '&dateofcontact1=' + dateofcontact + '&formfilledby1=' + formfilledby + '&comments1=' + comments;
+var dataString = 'firstname1=' + firstname + '&lastname1=' + lastname + '&phone1=' + phone + '&referral1=' + referral + '&referralother1=' + referralother + '&lawyer1=' + lawyer + '&type1=' + type + '&typeother1=' + typeother + '&dateofcontact1=' + dateofcontact + '&formfilledby1=' + formfilledby + '&comments1=' + comments + '&email1=' + email;
 
 var firstnamecheck = document.form.firstname.value;
 var lastnamecheck = document.form.lastname.value;
@@ -94,6 +95,7 @@ var formfillcheck = document.form.formfilledby.value;
         data: dataString,
         cache: false,
         success: function(html) {
+        //location.href = "email.php";
         alert(html);
     }
 });
@@ -101,4 +103,4 @@ var formfillcheck = document.form.formfilledby.value;
 }
     return false;
 }
-
+;

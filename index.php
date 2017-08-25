@@ -53,7 +53,7 @@
         </div>
         
         
-        <form id="form" name="form" onsubmit="return validate();">
+        <form id="form" name="form" onsubmit="return validate();" action="email.php">
          <fieldset>
             <div class="row">
               <div class="twelve columns">
@@ -253,11 +253,23 @@
                 <textarea id="comments" name="comments" placeholder="Enter comments about the PNC" cols="40" value="<?php if(isset($_POST['comments'])) { echo htmlentities($_POST['comments']); } ?>"></textarea>
               </div>
             </div>
+            <div class="row">
+              <div class="twelve columns">
+                <label for="email">Email Form To:</label>
+                <select name="email" id="email" placeholder="Select Email Address" value="<?php if(isset($_POST['email'])) { echo htmlentities($_POST['email']); } ?>">
+                  <option value="jkwitco@gmail.com">jkwitco@gmail.com</option>
+                </select>
+              </div>
+            </div>
             <div class="row twelve columns">
-                <input type="submit" value="Save PNC" />
+                <input type="submit" name="send" value="Save PNC" />
             </div>   
          </fieldset>
       </form>
+
+
+            
+     
 
       <form name="reportreferral" action="report-referral.php" method="get">
       <fieldset>
