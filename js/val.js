@@ -94,8 +94,9 @@ var formfillcheck = document.form.formfilledby.value;
         url: "ajaxjs.php",
         data: dataString,
         cache: false,
-        success: function(html) {
+        success: function() {
             window.location.replace(html);
+
         }
 });
 

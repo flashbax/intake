@@ -18,7 +18,6 @@
   <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="js/excel.js"></script>
 
-
   <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link href="https://fonts.googleapis.com/css?family=Khula" rel="stylesheet">
@@ -50,62 +49,85 @@
 
 <form action="#" method="GET">
       <div class="row">
-          <h1>Search by Date</h1>
-          Start Date: <input type="date" id="datestart" name="datestart" placeholder="Enter Start date" />
-          End Date: <input type="date" id="dateend" name="dateend" placeholder="Enter End date" />
-            
-            
-            <input type="submit" value="go" name="gendate">
+          <h2>Search by Lawyer</h2>
+           <select name="lawyer">
+           <option>Select Lawyer</option>          
+                <?php
+
+                  $querylaw = "SELECT DISTINCT user_lawyer FROM intake_data";
+                  $resultlaw = mysqli_query($conn, $querylaw);
+
+
+                
+                  while($rowslaw = mysqli_fetch_array($resultlaw)) {
+                    $rowslawid = $rowslaw['id'];
+                    $rowslawdata = $rowslaw['user_lawyer'];
+                    //$ref = mysqli_real_escape_string($conn, $rowsrefdata)
+                
+                 
+                ?>
+
+                <?php echo '<option> '. $rowslawdata .' </option>'; ?>
+                
+
+                <?php    
+                  }
+                ?>
+            </select>
+            <input type="submit" value="go" name="genreport">
         </div>
         <div id="dvData">
         <table cellpadding="0" cellspacing="0" align="center"> 
           <tr>
             <td><strong>First Name</strong></td>
             <td><strong>Last Name</strong></td> 
-            <td><strong>Referral</strong></td>
-            <td><strong>Referral Other</strong></td> 
+            <td><strong>Referral</strong></td> 
+            <td><strong>Referral Other</strong></td>
             <td><strong>Lawyer</strong></td> 
-            <td><strong>Type of File</strong></td> 
+            <td><strong>Type of File</strong></td>
             <td><strong>Type of File Other</strong></td> 
             <td><strong>Date</strong></td> 
           </tr>
         <div class="row">
             <?php
             // error_reporting(0);
-                if (isset($_GET['gendate']) ? $_GET['gendate'] : '') { 
+                if (isset($_GET['genreport']) ? $_GET['genreport'] : '') { 
                 
-                $datestart = $_GET['datestart'];
-                $dateend = $_GET['dateend'];
+                $lawyer = $_GET['lawyer'];
+                //single and double quote fix
+                $lawqfix = mysqli_real_escape_string($conn, $lawyer);
+               
                 
-                $querydate = "SELECT user_firstname, user_lastname, user_referral, user_referral_other, user_lawyer, user_type, user_type_other, user_date FROM intake_data WHERE user_date >='$datestart' AND user_date<='$dateend' ORDER BY user_date ASC";
+                $query = "SELECT user_firstname, user_lastname, user_referral, user_referral_other, user_lawyer, user_type, user_type_other, user_date FROM intake_data WHERE user_lawyer='$lawqfix'";
 
-                $dateresult = mysqli_query($conn, $querydate) OR die(mysqli_error());
+                $result = mysqli_query($conn, $query) OR die(mysqli_error($conn));
 
-                if (!$dateresult) {
+                if (!$result) {
                     printf("Error: %s\n", mysqli_error($conn));
                 exit(); }
 
-                while($therows = mysqli_fetch_array($dateresult)) {
+                while($thelawrows = mysqli_fetch_array($result)) {
 
-                    $rowsfirst = $therows['user_firstname']; 
-                    $rowslast = $therows['user_lastname']; 
-                    $rowsdata = $therows['user_referral']; 
-                    $rowsdataother = $therows['user_referral_other'];
-                    $rowslawyer = $therows['user_lawyer']; 
-                    $rowstype = $therows['user_type'];
-                    $rowstypeother = $therows['user_type_other'];
-                    $rowsdate = $therows['user_date'];
+                    $rowslawfirst = $thelawrows['user_firstname']; 
+                    $rowslawlast = $thelawrows['user_lastname']; 
+                    $rowslawdata = $thelawrows['user_referral']; 
+                    $rowslawdataother = $thelawrows['user_referral_other']; 
+                    $rowslawlawyer = $thelawrows['user_lawyer']; 
+                    $rowslawtype = $thelawrows['user_type'];
+                    $rowslawtypeother = $thelawrows['user_type_other'];
+                    $rowslawdate = $thelawrows['user_date'];
+
                      
                 ?>
                   <tr>
-                    <td><?php echo $rowsfirst; ?></td>
-                    <td><?php echo $rowslast; ?></td> 
-                    <td><?php echo $rowsdata; ?></td> 
-                    <td><?php echo $rowsdataother; ?></td>
-                    <td><?php echo $rowslawyer; ?></td>
-                    <td><?php echo $rowstype; ?></td> 
-                    <td><?php echo $rowstypeother; ?></td> 
-                    <td><?php echo $rowsdate; ?></td> 
+                    <td><?php echo $rowslawfirst; ?></td>
+                    <td><?php echo $rowslawlast; ?></td> 
+                    <td><?php echo $rowslawdata; ?></td>
+                    <td><?php echo $rowslawdataother; ?></td> 
+                    <td><?php echo $rowslawlawyer; ?></td> 
+                    <td><?php echo $rowslawtype; ?></td>
+                    <td><?php echo $rowslawtypeother; ?></td>  
+                    <td><?php echo $rowslawdate; ?></td> 
                   </tr>
                 
 
@@ -120,6 +142,7 @@
 <a href="#" class="export">Export to Excel</a>
 
 <?php include("inc/nav.php"); ?>
+
 
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->

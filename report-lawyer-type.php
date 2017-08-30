@@ -9,15 +9,14 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
   <!-- JS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="js/excel.js"></script>
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -50,25 +49,25 @@
 
 <form action="#" method="GET">
       <div class="row">
-          <h2>Search by Referral and Type of File</h2>
-           <select name="subject">
-           <option>Select Referral</option>          
+          <h2>Search by Lawyer and Type of File</h2>
+           <select name="lawyer">
+           <option>Select Lawyer</option>          
                 <?php
 
-                  $queryref = "SELECT DISTINCT user_referral FROM intake_data";
-                  $resultref = mysqli_query($conn, $queryref);
+                  $querylaw = "SELECT DISTINCT user_lawyer FROM intake_data";
+                  $resultlaw = mysqli_query($conn, $querylaw);
 
 
                 
-                  while($rowsref = mysqli_fetch_array($resultref)) {
-                    $rowsrefid = $rowsref['id'];
-                    $rowsrefdata = $rowsref['user_referral'];
+                  while($rowslaw = mysqli_fetch_array($resultlaw)) {
+                    $rowslawid = $rowslaw['id'];
+                    $rowslawdata = $rowslaw['user_lawyer'];
                     //$ref = mysqli_real_escape_string($conn, $rowsrefdata)
                 
                  
                 ?>
 
-                <?php echo '<option> '. $rowsrefdata .' </option>'; ?>
+                <?php echo '<option> '. $rowslawdata .' </option>'; ?>
                 
 
                 <?php    
@@ -109,14 +108,14 @@
             // error_reporting(0);
                 if (isset($_GET['genreport']) ? $_GET['genreport'] : '') { 
                 
-                $subject = $_GET['subject'];
+                $lawyer = $_GET['lawyer'];
                 //single and double quote fix
-                $subqfix = mysqli_real_escape_string($conn, $subject);
+                $lawqfix = mysqli_real_escape_string($conn, $lawyer);
                 $type = $_GET['type'];
                 //single and double quote fix
                 $typeqfix = mysqli_real_escape_string($conn, $type);
                 
-                $query = "SELECT user_firstname, user_lastname, user_referral, user_referral_other, user_lawyer, user_type, user_type_other, user_date FROM intake_data WHERE user_referral='$subqfix' AND user_type='$typeqfix'";
+                $query = "SELECT user_firstname, user_lastname, user_referral, user_referral_other, user_lawyer, user_type, user_type_other, user_date FROM intake_data WHERE user_lawyer='$lawqfix' AND user_type='$typeqfix'";
 
                 $result = mysqli_query($conn, $query) OR die(mysqli_error($conn));
 
@@ -124,28 +123,28 @@
                     printf("Error: %s\n", mysqli_error($conn));
                 exit(); }
 
-                while($therefrows = mysqli_fetch_array($result)) {
+                while($thelawrows = mysqli_fetch_array($result)) {
 
-                    $rowsreffirst = $therefrows['user_firstname']; 
-                    $rowsreflast = $therefrows['user_lastname']; 
-                    $rowsrefdata = $therefrows['user_referral']; 
-                    $rowsrefdataother = $therefrows['user_referral_other']; 
-                    $rowsreflawyer = $therefrows['user_lawyer']; 
-                    $rowsreftype = $therefrows['user_type'];
-                    $rowsreftypeother = $therefrows['user_type_other'];
-                    $rowsrefdate = $therefrows['user_date'];
+                    $rowslawfirst = $thelawrows['user_firstname']; 
+                    $rowslawlast = $thelawrows['user_lastname']; 
+                    $rowslawdata = $thelawrows['user_referral']; 
+                    $rowslawdataother = $thelawrows['user_referral_other']; 
+                    $rowslawlawyer = $thelawrows['user_lawyer']; 
+                    $rowslawtype = $thelawrows['user_type'];
+                    $rowslawtypeother = $thelawrows['user_type_other'];
+                    $rowslawdate = $thelawrows['user_date'];
 
                      
                 ?>
                   <tr>
-                    <td><?php echo $rowsreffirst; ?></td>
-                    <td><?php echo $rowsreflast; ?></td> 
-                    <td><?php echo $rowsrefdata; ?></td>
-                    <td><?php echo $rowsrefdataother; ?></td> 
-                    <td><?php echo $rowsreflawyer; ?></td> 
-                    <td><?php echo $rowsreftype; ?></td>
-                    <td><?php echo $rowsreftypeother; ?></td>  
-                    <td><?php echo $rowsrefdate; ?></td> 
+                    <td><?php echo $rowslawfirst; ?></td>
+                    <td><?php echo $rowslawlast; ?></td> 
+                    <td><?php echo $rowslawdata; ?></td>
+                    <td><?php echo $rowslawdataother; ?></td> 
+                    <td><?php echo $rowslawlawyer; ?></td> 
+                    <td><?php echo $rowslawtype; ?></td>
+                    <td><?php echo $rowslawtypeother; ?></td>  
+                    <td><?php echo $rowslawdate; ?></td> 
                   </tr>
                 
 
@@ -154,14 +153,12 @@
                 }
             ?>
         </div>
-        </table> 
-        </div>    
-  </form>
- 
-  <a href="#" class="export">Export to Excel</a>
+        </table>
+        </div>
+</form>
+<a href="#" class="export">Export to Excel</a>
 
-  <?php include("inc/nav.php"); ?>
-
+<?php include("inc/nav.php"); ?>
 
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->

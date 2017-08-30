@@ -13,7 +13,8 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
+   <!-- JS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="js/main.js"></script>
   <script type="text/javascript" src="js/val.js"></script>
@@ -53,7 +54,7 @@
         </div>
         
         
-        <form id="form" name="form" method="post "onsubmit="return validate();">
+        <form id="form" name="form" method="post" onsubmit="return validate()">
          <fieldset>
             <div class="row">
               <div class="twelve columns">
@@ -267,10 +268,6 @@
          </fieldset>
       </form>
 
-
-            
-     
-
       <form name="reportreferral" action="report-referral.php" method="get">
       <fieldset>
         <div class="row twelve columns">
@@ -287,6 +284,22 @@
       </fieldset>
       </form>
 
+       <form name="reportlawyer" action="report-lawyer.php" method="get">
+        <fieldset>
+        <div class="row twelve columns">
+          <input type="submit" value="Generate Report by Lawyer">
+        </div>
+      </fieldset>
+      </form>
+
+       <form name="reportlawyertype" action="report-lawyer-type.php" method="get">
+        <fieldset>
+        <div class="row twelve columns">
+          <input type="submit" value="Generate Report by Lawyer & Type of File">
+        </div>
+      </fieldset>
+      </form>
+
       <form name="search" action="index.php" method="get">
           <fieldset>
               <div class="row">
@@ -296,16 +309,16 @@
                     <input type="text" id="search" name="search" placeholder="Search by last name" dir="ltr" />
                     <input type="submit" value="Search" /><br />
                   </div>
+                  
                   <?php
                          //initialization at the top
-
                          //connect to database
-                         $conn = mysqli_connect("localhost", "root", "", "intake_form");
-                        //check if connection failed
+                         $conn = mysqli_connect("justinkwitco.netfirmsmysql.com", "newuser99", "newuser99", "intake_form");
+                         //check if connection failed
                          if(mysqli_connect_errno()) { 
                           echo "Failed to connect: " . mysqli_connect_error();
                          }
-                  ?>
+                  ?> 
 
                   <?php
                     //error_reporting(0);
