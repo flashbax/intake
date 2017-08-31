@@ -36,40 +36,6 @@
 
       </head>
 
-        <?php
-
-          if (isset($_POST['send'])) { 
-            $emailad =  $_POST['email'];
-            $to = $emailad;
-            $subject = 'PNC Form';
-            $firstname = $_POST['firstname'];
-            $lastname = $_POST['lastname'];
-            $phone = $_POST['phone'];
-            $referral = $_POST['referral'];
-            $referralother = $_POST['referralother'];
-            $lawyer = $_POST['lawyer'];
-            $type = $_POST['type'];
-            $typeother = $_POST['typeother'];
-            $dateofcontact = $_POST['dateofcontact'];
-            $formfilledby = $_POST['formfilledby'];
-            $comments = $_POST['comments'];
-
-            $message = 'First Name: ' . $firstname . "\n\n" . 'Last Name: ' . $lastname . "\n\n" . 'Phone Number: ' . $phone . "\n\n" . 'Referral: ' . $referral . "\n\n" . 'Referral Other: ' . $referralother . "\n\n" . 'Lawyer: ' . $lawyer . "\n\n" . 'Type of File: ' . $type . "\n\n" . 'Type of File Other: ' . $typeother . "\n\n" . 'Date of Contact: ' . $dateofcontact . "\n\n" . 'Form Filled By: ' . $formfilledby . "\n\n" . 'Comments: ' . $comments;
-
-            $headers = "From: SK Potential New Client\r\n";
-            $headers .= 'Content-Type: text/plain; charset=utf-8';
-
-            $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-            if ($email) { 
-                $headers .= "\r\nReply-To: $email";
-            }
-
-
-            $success = mail($to, $subject, $message, $headers);
-             
-          
-          } ?>
-
       <body>
 
         <div class="container">
@@ -84,14 +50,50 @@
               <div class="row">
                 <div class="twelve columns">
 
-                    
-                  <?php if (isset($success) && $success) { ?>
-                      <p><?php echo $formfilledby ?> the following PNC! information has been emailed to <?php echo $emailad ?></p>  
-                      <?php } else { ?>
-                      <p>The PNC information has not emailed. Please contact IT Requests at <a href="mailto:itrequests@singerkwinter.com">itrequests@singerkwinter.com</a></p>
-                  <?php } ?>
+                      <?php
+                        
+                         //initialization at the top
+                         //connect to database
+                         $conn = new mysqli("justinkwitco.netfirmsmysql.com", "newuser99", "newuser99", "intake_form");
+                         //check if connection failed
+                         if($conn->connect_error) { 
+                          die("Connection error: " . $conn->connect_error);
+                         }
 
-                  <a href="index.php">Back to PNC Form</a>
+                            $result = $conn->query("SELECT * FROM intake_data ORDER BY id DESC LIMIT 1"); 
+
+                             if ($result->num_rows > 0) { 
+                              while ($row = $result->fetch_assoc()) { 
+                               $firstname = $row['user_firstname'];
+                               $lastname = $row['user_lastname'];
+                               $phone = $row['user_phone'];
+                               $referral = $row['user_referral'];
+                               $referralother = $row['user_referral_other'];
+                               $lawyer = $row['user_lawyer'];
+                               $type = $row['user_type'];
+                               $typeother = $row['user_type_other'];
+                               $date = $row['user_date'];
+                               $formfilledby = $row['user_formfilledby'];
+                               $comments = $row['user_comment'];
+
+                               $email = $row['user_email'];
+
+                                echo 'The following information has been added to the database and emailed to ' . $email . '.' . '<br>' . 'First Name: ' . $firstname . '<br>' . $lastname . '<br>' . $phone . '<br>' . $referral . '<br>' . $referralother . '<br>' . $lawyer . '<br>' . $type . '<br>' . $typeother . '<br>' . $date . '<br>' . $formfilledby . '<br>' . $comments . '<br>';
+                              }
+                             }                       
+                            
+
+
+                            // $email = $_POST['email'];
+                            // $firstname = $_POST['firstname'];
+                            // $lastname = $_POST['lastname'];
+                            // $output = 'The following information has been added to the database and emailed to ' . $email . '.' . "\n\n" . $firstname . "\n\n" . $lastname;
+                            
+                         
+
+                      ?> 
+                 
+                <a href="index.php">Back to PNC Form</a>
 
                 </div>
               </div> 
