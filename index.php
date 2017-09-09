@@ -361,9 +361,10 @@
                           $output .= '
                                 
                                 <div class="row">
-                                <div id="openrecpar"><a id="openrec' . $id .'"><strong>' . $first .' ' .  $last .'</strong> <i class="fa fa-pencil" aria-hidden="true"></i></a></div><br />
+                                <div id="openrecord"><a id="openrecordchild"><strong>' . $first .' ' .  $last .'</strong> <i class="fa fa-pencil" aria-hidden="true"></i></a></div></div><br />
                                 </div>
-                                <div id="updaterecpar"><div id="updaterec' . $id .'">
+                                <div class="row">
+                                <div id="updaterecord">
                                   <form action="index.php" method="post" enctype="multipart/form-data">
                                     <fieldset>
                                       <div class="row">
@@ -387,7 +388,7 @@
                                       </div>
                                     </fieldset>
                                   </form>
-                                </div></div>';
+                               </div></div>';
                           }
                         }
                       }

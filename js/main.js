@@ -30,32 +30,72 @@ $(document).ready(function() {
         });       
     });
 
+    //var updaterec = $("#updaterecpar div:first-child").attr("id");
+    var updaterecord = $('div[id^="updaterecord"]');
     
-    var updaterec = $("#updaterecpar div:first-child").attr("id");
-    
-    $('#'+updaterec).hide();
+    $(updaterecord).hide();
 
-    function open(){
-
-        //for each div with id openrec[x] return
-        var openrec = $("#openrecpar a:first-child").attr("id");
-        return openrec;
-
-    }
-
-    var openuprec = open();
-
-    console.log(openuprec);
-
-    $('#'+openuprec).click(function(){  // on click toggle between hiding comment box and status dropdown    
-        
-        $('#'+updaterec).animate({
-                 height: 'toggle'
-        });
-             
+    var updatearray = $.map(updaterecord, function(value, index) {
+        return [index];
     });
 
+        //for each div with id openrec[x] return
+    var updaterecord = $('a[id^="openrecord"]');
+     
+    var openarray = $.map(openrecord, function(value, index) {
+        return [index];
+    });
+
+
+    $('a[id^="openrecord"]').click(function(){ 
     
+        function sample() { 
+            $.each( updatearray, function (index, num){   
+                return index;
+            });
+        } 
+
+        // $.each( openarray, function (index, num){   
+        //     console.log(index);
+        // });
+
+        console.log(sample());
+             
+    }); 
+
+    
+
+    //var openrecord = $('a[id^="openrecord"]');
+
+    // function sample() { 
+    //     return $.each( openrecord, function (index, num){
+    //         // console.log(index);
+    //         // console.log(num);
+    //         return openrecord.index;
+    //     });
+    // }
+
+
+
+    //     openrecordid = $("#openrecord a:first-child").attr("id");
+    //     console.log(openrecordid);
+        
+    //     var updatematched = $('div[id^="updaterecord"]');
+       
+    //     console.log(updatematched);
+
+    //     $.each( updatematched, function (index, num){
+    //         console.log(index);
+    //         console.log(num);
+    //     });
+
+
+    //     // if (openuprecord = match) {
+    //     //     $(match).animate({
+    //     //              height: 'toggle'
+    //     //     });
+    //     //  }
+
 
     //var getlistnum = $("#listnum div:first-child").attr("id");
       
