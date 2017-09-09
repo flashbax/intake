@@ -54,25 +54,25 @@
         <div class="twelve columns"><br /><img src="images/logo.png" /></div>
       </div>
       <div class="row">
-          <h4>Search by Lawyer</h4>
-           <select name="lawyer">
-           <option>Select Lawyer</option>          
+          <h4>Search by Client Status</h4>
+           <select name="retain">
+           <option>Select Client Status</option>          
                 <?php
 
-                  $querylaw = "SELECT DISTINCT user_lawyer FROM intake_data";
-                  $resultlaw = mysqli_query($conn, $querylaw);
+                  $queryret = "SELECT DISTINCT user_retained FROM intake_data";
+                  $resultret = mysqli_query($conn, $queryret);
 
 
                 
-                  while($rowslaw = mysqli_fetch_array($resultlaw)) {
-                    $rowslawid = $rowslaw['id'];
-                    $rowslawdata = $rowslaw['user_lawyer'];
+                  while($rowsret = mysqli_fetch_array($resultret)) {
+                    $rowsretid = $rowsret['id'];
+                    $rowsretdata = $rowsret['user_retained'];
                     //$ref = mysqli_real_escape_string($conn, $rowsrefdata)
                 
                  
                 ?>
 
-                <?php echo '<option> '. $rowslawdata .' </option>'; ?>
+                <?php echo '<option> '. $rowsretdata .' </option>'; ?>
                 
 
                 <?php    
@@ -92,18 +92,19 @@
             <td><strong>Type of File</strong></td>
             <td><strong>Type of File Other</strong></td> 
             <td><strong>Date</strong></td> 
+            <td><strong>Status</strong></td> 
           </tr>
         <div class="row">
             <?php
             // error_reporting(0);
                 if (isset($_GET['genreport']) ? $_GET['genreport'] : '') { 
                 
-                $lawyer = $_GET['lawyer'];
+                $ret = $_GET['retain'];
                 //single and double quote fix
-                $lawqfix = mysqli_real_escape_string($conn, $lawyer);
+                $retqfix = mysqli_real_escape_string($conn, $ret);
                
                 
-                $query = "SELECT user_firstname, user_lastname, user_referral, user_referral_other, user_lawyer, user_type, user_type_other, user_date FROM intake_data WHERE user_lawyer='$lawqfix'";
+                $query = "SELECT user_firstname, user_lastname, user_referral, user_referral_other, user_lawyer, user_type, user_type_other, user_date, user_retained FROM intake_data WHERE user_retained ='$retqfix'";
 
                 $result = mysqli_query($conn, $query) OR die(mysqli_error($conn));
 
@@ -111,28 +112,30 @@
                     printf("Error: %s\n", mysqli_error($conn));
                 exit(); }
 
-                while($thelawrows = mysqli_fetch_array($result)) {
+                while($theretrows = mysqli_fetch_array($result)) {
 
-                    $rowslawfirst = $thelawrows['user_firstname']; 
-                    $rowslawlast = $thelawrows['user_lastname']; 
-                    $rowslawdata = $thelawrows['user_referral']; 
-                    $rowslawdataother = $thelawrows['user_referral_other']; 
-                    $rowslawlawyer = $thelawrows['user_lawyer']; 
-                    $rowslawtype = $thelawrows['user_type'];
-                    $rowslawtypeother = $thelawrows['user_type_other'];
-                    $rowslawdate = $thelawrows['user_date'];
+                    $rowsretfirst = $theretrows['user_firstname']; 
+                    $rowsretlast = $theretrows['user_lastname']; 
+                    $rowsretdata = $theretrows['user_referral']; 
+                    $rowsretdataother = $theretrows['user_referral_other']; 
+                    $rowsretlawyer = $theretrows['user_lawyer']; 
+                    $rowsrettype = $theretrows['user_type'];
+                    $rowsrettypeother = $theretrows['user_type_other'];
+                    $rowsretdate = $theretrows['user_date'];
+                    $rowsretretained = $theretrows['user_retained'];
 
                      
                 ?>
                   <tr>
-                    <td><?php echo $rowslawfirst; ?></td>
-                    <td><?php echo $rowslawlast; ?></td> 
-                    <td><?php echo $rowslawdata; ?></td>
-                    <td><?php echo $rowslawdataother; ?></td> 
-                    <td><?php echo $rowslawlawyer; ?></td> 
-                    <td><?php echo $rowslawtype; ?></td>
-                    <td><?php echo $rowslawtypeother; ?></td>  
-                    <td><?php echo $rowslawdate; ?></td> 
+                    <td><?php echo $rowsretfirst; ?></td>
+                    <td><?php echo $rowsretlast; ?></td> 
+                    <td><?php echo $rowsretdata; ?></td>
+                    <td><?php echo $rowsretdataother; ?></td> 
+                    <td><?php echo $rowsretlawyer; ?></td> 
+                    <td><?php echo $rowsrettype; ?></td>
+                    <td><?php echo $rowsrettypeother; ?></td>  
+                    <td><?php echo $rowsretdate; ?></td> 
+                    <td><?php echo $rowsretretained; ?></td>
                   </tr>
                 
 

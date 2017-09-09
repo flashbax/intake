@@ -2,6 +2,7 @@
 	session_start();
 // Fetching Values From URL
 	$to = $_POST['email1'];
+	$topnc =("jkwitco@singerkwinter.com");
     $subject = 'PNC Form';
 	$firstname2 = $_POST['firstname1'];
 	$lastname2 = $_POST['lastname1'];
@@ -26,7 +27,10 @@
             $headers .= 'Content-Type: text/plain; charset=utf-8';
 
             mail($to, $subject, $message, $headers);
+            mail($topnc, $subject, $message, $headers);
+    }
              
+	if (isset($_POST['firstname1'])) {
 
 			$query = mysqli_query($connection, "insert into intake_data(user_firstname, user_lastname, user_phone, user_referral, user_referral_other, user_lawyer, user_type, user_type_other, user_date, user_formfilledby, user_comment, user_email) values ('$firstname2', '$lastname2', '$phone2', '$referral2', '$referralother2' ,'$lawyer2' ,'$type2' ,'$typeother2' ,'$dateofcontact2' ,'$formfilledby2' ,'$comments2' ,'$email2')"); //Insert Query
 		 	 echo "email.php";

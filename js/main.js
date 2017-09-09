@@ -18,15 +18,60 @@ $(document).ready(function() {
 
     $('#searchcon').hide();
     $('.opensearch').click(function(){
-            $('#searchcon').show();
-            $('.opensearch').hide();
+            $('#searchcon').animate({
+            height: 'toggle'
+        });       
     });
 
-    // $('#submitted').click(function(){
-    //     var hello = $('#val').text();
-    //     alert(hello);
+    $('#reportcon').hide();
+    $('.openreport').click(function(){      
+        $('#reportcon').animate({
+            height: 'toggle'
+        });       
+    });
+
+    
+    var updaterec = $("#updaterecpar div:first-child").attr("id");
+    
+    $('#'+updaterec).hide();
+
+    function open(){
+
+        //for each div with id openrec[x] return
+        var openrec = $("#openrecpar a:first-child").attr("id");
+        return openrec;
+
+    }
+
+    var openuprec = open();
+
+    console.log(openuprec);
+
+    $('#'+openuprec).click(function(){  // on click toggle between hiding comment box and status dropdown    
+        
+        $('#'+updaterec).animate({
+                 height: 'toggle'
+        });
+             
+    });
+
+    
+
+    //var getlistnum = $("#listnum div:first-child").attr("id");
+      
+   
+    // //$('#updaterecpar #'+updaterec).each(function(){ 
+    //     $('#'+updaterec).hide(); //hide comment box and status dropdown
+    // //});
+   
+    // $('#'+open()).click(function(){  // on click toggle between hiding comment box and status dropdown    
+        
+    // $('#'+updaterec).animate({
+    //         height: 'toggle'
+    // });
+             
     // });
 
-
+        
 
 });

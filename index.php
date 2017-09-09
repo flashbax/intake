@@ -13,18 +13,19 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="https://fonts.googleapis.com/css?family=Khula" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One" rel="stylesheet">
+  <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+
    <!-- JS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="js/main.js"></script>
   <script type="text/javascript" src="js/val.js"></script>
 
-  <!-- FONT
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="https://fonts.googleapis.com/css?family=Khula" rel="stylesheet">
-  <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
-
-
+  
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="stylesheet" href="css/normalize.css">
@@ -80,6 +81,7 @@
               <div class="twelve columns">
                 <label for="referral">Referral Source: <span style="color:red;" id="referralothererror"></label>
                   <select name="referral" id="referral" placeholder="Enter referral" value="<?php if(isset($_POST['referral'])) { echo htmlentities($_POST['referral']); } ?>">
+                    <option value="Select the Referral">Select the Referral</option>
                     <option value="Advertising (General)">Advertising (General)</option>
                     <option value="Advocates Journal">Advocates Journal</option>
                     <option value="Ajax Pickering">Ajax Pickering</option>
@@ -191,6 +193,7 @@
               <div class="twelve columns">
                 <label for="lawyer">Lawyer:</label>
                 <select name="lawyer" id="lawyer" placeholder="Enter Lawyer" value="<?php if(isset($_POST['lawyer'])) { echo htmlentities($_POST['lawyer']); } ?>">
+                  <option value="Select the Lawyer">Select the Lawyer</option>
                   <option value="Alfred M. Kwinter">Alfred M. Kwinter</option>
                   <option value="William A McMaster">William A McMaster</option>
                   <option value="Jason F. Katz">Jason F. Katz</option>
@@ -207,6 +210,7 @@
               <div class="twelve columns">
                 <label for="type">Type of File: <span style="color:red;" id="typeothererror"></label>
                 <select name="type" id="type" placeholder="Enter Type of File" value="<?php if(isset($_POST['type'])) { echo htmlentities($_POST['type']); } ?>">
+                  <option value="Select the File Type">Select the File Type</option>
                   <option value="Assault">Assault</option>
                   <option value="Bicycle Accident">Bicycle Accident</option>
                   <option value="Civil Litigation">Civil Litigation</option>
@@ -267,48 +271,59 @@
             </div>   
          </fieldset>
       </form>
+      <a class="openreport">Reports <i class="fa fa-table" aria-hidden="true"></i></a>
+        <div id="reportcon">
+          <form name="reportreferral" action="report-referral.php" method="get">
+          <fieldset>
+            <div class="row twelve columns">
+              <input type="submit" value="Generate Report by Referral & Type of File">
+            </div>
+          </fieldset>
+          </form>
+          
+          <form name="reportdate" action="report-date.php" method="get">
+          <fieldset>
+            <div class="row twelve columns">
+              <input type="submit" value="Generate Report by Date">
+            </div>
+          </fieldset>
+          </form>
 
-      <form name="reportreferral" action="report-referral.php" method="get">
-      <fieldset>
-        <div class="row twelve columns">
-          <input type="submit" value="Generate Report by Referral & Type of File">
-        </div>
-      </fieldset>
-      </form>
+           <form name="reportlawyer" action="report-lawyer.php" method="get">
+            <fieldset>
+            <div class="row twelve columns">
+              <input type="submit" value="Generate Report by Lawyer">
+            </div>
+          </fieldset>
+          </form>
+
+           <form name="reportlawyertype" action="report-lawyer-type.php" method="get">
+            <fieldset>
+            <div class="row twelve columns">
+              <input type="submit" value="Generate Report by Lawyer & Type of File">
+            </div>
+          </fieldset>
+          </form>
+
+          <form name="reportretained" action="report-retained.php" method="get">
+            <fieldset>
+            <div class="row twelve columns">
+              <input type="submit" value="Generate Report by Retained or Not Retained">
+            </div>
+          </fieldset>
+          </form>
+      </div>
       
-      <form name="reportdate" action="report-date.php" method="get">
-      <fieldset>
-        <div class="row twelve columns">
-          <input type="submit" value="Generate Report by Date">
-        </div>
-      </fieldset>
-      </form>
-
-       <form name="reportlawyer" action="report-lawyer.php" method="get">
-        <fieldset>
-        <div class="row twelve columns">
-          <input type="submit" value="Generate Report by Lawyer">
-        </div>
-      </fieldset>
-      </form>
-
-       <form name="reportlawyertype" action="report-lawyer-type.php" method="get">
-        <fieldset>
-        <div class="row twelve columns">
-          <input type="submit" value="Generate Report by Lawyer & Type of File">
-        </div>
-      </fieldset>
-      </form>
-
       <form name="search" action="index.php" method="get">
           <fieldset>
               <div class="row">
-                  <a class="opensearch">Search <i class="fa fa-search-plus" aria-hidden="true"></i></a>
-                  <div id="searchcon">
+                <a class="opensearch">Search <i class="fa fa-search-plus" aria-hidden="true"></i></a>
+                <div id="searchcon">
                     <label for="search">Search by last name:</label>
                     <input type="text" id="search" name="search" placeholder="Search by last name" dir="ltr" />
-                    <input type="submit" value="Search" /><br />
-                  </div>
+                    <input type="submit" value="Search" id="searchbutton" /><br />
+                </div> <!-- Search open close tag-->
+                  
                   
                   <?php
                          //initialization at the top
@@ -341,27 +356,45 @@
                           $last = $row['user_lastname'];
                           $comment = $row['user_comment']; 
                           $id = $row['id'];
+                          $retained = $row['user_retained'];
 
                           $output .= '
-                                <div class="row">
-                                <strong>' . $first .' ' .  $last .'</strong> <i class="fa fa-pencil" aria-hidden="true"></i><br />
-                                </div>
                                 
-                                <form action="index.php" method="post" enctype="multipart/form-data">
-                                  <fieldset>
-                                    <div class="row">
-                                    <textarea id="commentu" name="commentu" value="' . $comment . '" cols="40">'. $comment .'</textarea><br />      
-                                    <input type="hidden" name="hidden" value="' . $id . '" />
-                                    <input type="submit" name="update" value="Update ' . $first .' ' .  $last . ' Record" /><br />
-                                    </div>
-                                  </fieldset>
-                                </form>';
+                                <div class="row">
+                                <div id="openrecpar"><a id="openrec' . $id .'"><strong>' . $first .' ' .  $last .'</strong> <i class="fa fa-pencil" aria-hidden="true"></i></a></div><br />
+                                </div>
+                                <div id="updaterecpar"><div id="updaterec' . $id .'">
+                                  <form action="index.php" method="post" enctype="multipart/form-data">
+                                    <fieldset>
+                                      <div class="row">
+                                      <textarea id="commentu" name="commentu" value="' . $comment . '" cols="40">'. $comment .'</textarea><br />      
+                                      <input type="hidden" name="hidden" value="' . $id . '" />
+                                      <input type="submit" name="update" value="Update ' . $first .' ' .  $last . ' Comment" /><br />
+                                      </div>
+                                    </fieldset>
+                                  </form>
+
+                                  <form action="index.php" method="post" enctype="multipart/form-data">
+                                    <fieldset>
+                                      <div class="row">
+                                      <select name="retain">
+                                        <option>Currently: ' . $retained . '</option> 
+                                        <option>Not Retained</option> 
+                                        <option>Retained</option> 
+                                      </select>
+                                      <input type="hidden" name="hidden" value="' . $id . '" />
+                                      <input type="submit" name="updateretain" value="Update Client Status"><br />
+                                      </div>
+                                    </fieldset>
+                                  </form>
+                                </div></div>';
                           }
                         }
                       }
                   ?>
                  
               </div>
+          
           </fieldset>
       </form> 
         <?php
@@ -375,13 +408,27 @@
               //$up = mysqli_real_escape_string($conn, $updated);
 
               if ($updated) { 
-                print ("The update was successful!");
+               print ("The comment update was successful!");
+              }
+
+            }
+
+            if(isset ($_POST['updateretain'])) { 
+              $updateret = $_POST['retain']; 
+              $retfix = mysqli_real_escape_string($conn, $updateret);   
+              
+              $updatedret = mysqli_query($conn, "UPDATE intake_data SET user_retained='$retfix' WHERE id='$_POST[hidden]'") or die("The status of the client has not been updated."); 
+              //$up = mysqli_real_escape_string($conn, $updated);
+
+              if ($updatedret) { 
+               print ("The status of the client has been updated successfully!");
               }
 
             }
 
           mysqli_close($conn); 
         ?>
+
       </div>
     </div>
   </div>

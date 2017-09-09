@@ -17,11 +17,13 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="js/excel.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
 
 
   <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link href="https://fonts.googleapis.com/css?family=Khula" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One" rel="stylesheet">
   <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
 
   <!-- CSS
@@ -50,7 +52,10 @@
 
 <form action="#" method="GET">
       <div class="row">
-          <h1>Search by Date</h1>
+        <div class="twelve columns"><br /><img src="images/logo.png" /></div>
+      </div> 
+      <div class="row">
+          <h4>Search by Date</h4>
           Start Date: <input type="date" id="datestart" name="datestart" placeholder="Enter Start date" />
           End Date: <input type="date" id="dateend" name="dateend" placeholder="Enter End date" />
             

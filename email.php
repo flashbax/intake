@@ -21,6 +21,7 @@
         <!-- FONT
         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
         <link href="https://fonts.googleapis.com/css?family=Khula" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One" rel="stylesheet">
         <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
 
 
@@ -42,7 +43,7 @@
           <div class="row">
             <div class="twelve columns">
               <div class="row">
-                <div class="twelve columns"><img src="images/logo.png" /></div>
+                <div class="twelve columns"><br /><img src="images/logo.png" /></div>
               </div>  
               <div class="row">
                 <div class="twelve columns"><br /><h4>POTENTIAL NEW CLIENT FORM</h4></div>
@@ -63,33 +64,24 @@
                             $result = $conn->query("SELECT * FROM intake_data ORDER BY id DESC LIMIT 1"); 
 
                              if ($result->num_rows > 0) { 
-                              while ($row = $result->fetch_assoc()) { 
-                               $firstname = $row['user_firstname'];
-                               $lastname = $row['user_lastname'];
-                               $phone = $row['user_phone'];
-                               $referral = $row['user_referral'];
-                               $referralother = $row['user_referral_other'];
-                               $lawyer = $row['user_lawyer'];
-                               $type = $row['user_type'];
-                               $typeother = $row['user_type_other'];
-                               $date = $row['user_date'];
-                               $formfilledby = $row['user_formfilledby'];
-                               $comments = $row['user_comment'];
+                                while ($row = $result->fetch_assoc()) { 
+                                    $firstname = $row['user_firstname'];
+                                    $lastname = $row['user_lastname'];
+                                    $phone = $row['user_phone'];
+                                    $referral = $row['user_referral'];
+                                    $referralother = $row['user_referral_other'];
+                                    $lawyer = $row['user_lawyer'];
+                                    $type = $row['user_type'];
+                                    $typeother = $row['user_type_other'];
+                                    $date = $row['user_date'];
+                                    $formfilledby = $row['user_formfilledby'];
+                                    $comments = $row['user_comment'];
 
-                               $email = $row['user_email'];
+                                    $email = $row['user_email'];
 
-                                echo 'The following information has been added to the database and emailed to ' . $email . '.' . '<br>' . 'First Name: ' . $firstname . '<br>' . $lastname . '<br>' . $phone . '<br>' . $referral . '<br>' . $referralother . '<br>' . $lawyer . '<br>' . $type . '<br>' . $typeother . '<br>' . $date . '<br>' . $formfilledby . '<br>' . $comments . '<br>';
-                              }
-                             }                       
-                            
-
-
-                            // $email = $_POST['email'];
-                            // $firstname = $_POST['firstname'];
-                            // $lastname = $_POST['lastname'];
-                            // $output = 'The following information has been added to the database and emailed to ' . $email . '.' . "\n\n" . $firstname . "\n\n" . $lastname;
-                            
-                         
+                                    echo 'The following information has been added to the database and emailed to ' . $email . ':' . '<br>' . 'First Name: ' . $firstname . '<br>' . 'Last Name: ' . $lastname . '<br>' . 'Phone: ' .$phone . '<br>' . 'Referral: ' . $referral . '<br>' . 'Referral Other: ' . $referralother . '<br>' . 'Lawyer: ' . $lawyer . '<br>' . 'Type of File: ' . $type . '<br>' . 'Type of File Other: ' . $typeother . '<br>' . 'Date: ' . $date . '<br>' . 'Form Filled By: ' . $formfilledby . '<br>' . 'Comments: ' . $comments . '<br>';
+                                }
+                            }          
 
                       ?> 
                  

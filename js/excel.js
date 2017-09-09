@@ -78,3 +78,4 @@ $(document).ready(function () {
         // We actually need this to be a typical hyperlink
     });
 });
+

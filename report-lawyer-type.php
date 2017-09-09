@@ -13,6 +13,7 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="js/excel.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -21,6 +22,7 @@
   <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link href="https://fonts.googleapis.com/css?family=Khula" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One" rel="stylesheet">
   <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
 
   <!-- CSS
@@ -49,7 +51,10 @@
 
 <form action="#" method="GET">
       <div class="row">
-          <h2>Search by Lawyer and Type of File</h2>
+        <div class="twelve columns"><br /><img src="images/logo.png" /></div>
+      </div>
+      <div class="row">
+          <h4>Search by Lawyer and Type of File</h4>
            <select name="lawyer">
            <option>Select Lawyer</option>          
                 <?php
