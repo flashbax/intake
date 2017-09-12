@@ -23,6 +23,7 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="js/main.js"></script>
+  <script type="text/javascript" src="js/search.js"></script>
   <script type="text/javascript" src="js/val.js"></script>
 
   
@@ -358,13 +359,12 @@
                           $id = $row['id'];
                           $retained = $row['user_retained'];
 
-                          $output .= '
-                                
+                          $output .= ' 
                                 <div class="row">
-                                <div id="openrecord"><a id="openrecordchild"><strong>' . $first .' ' .  $last .'</strong> <i class="fa fa-pencil" aria-hidden="true"></i></a></div></div><br />
+                                <button data-id="updaterecord' . $id . '">' . $first .' ' .  $last .'<i data-id="updaterecord" class="fa fa-pencil" aria-hidden="true"></i></button><br />
                                 </div>
                                 <div class="row">
-                                <div id="updaterecord">
+                                <div id="updaterecord' . $id . '" class="updaterecord updaterecord-hidden">
                                   <form action="index.php" method="post" enctype="multipart/form-data">
                                     <fieldset>
                                       <div class="row">
@@ -389,6 +389,7 @@
                                     </fieldset>
                                   </form>
                                </div></div>';
+                         
                           }
                         }
                       }
@@ -436,7 +437,6 @@
 
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-
 
 
 </body>
